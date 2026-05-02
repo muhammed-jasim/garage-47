@@ -120,9 +120,21 @@ ul {
 }
 
 .btn-glass:hover {
-  background: var(--btn-glass-hover);
+  background: var(--bg-secondary);
   border-color: var(--accent-blue);
-  box-shadow: 0 10px 30px -10px var(--overlay-dark);
+  box-shadow: var(--card-shadow);
+}
+
+.btn-premium {
+  background: linear-gradient(135deg, var(--accent-blue), #2563eb);
+  color: #fff !important;
+  border: none;
+  box-shadow: 0 10px 30px -5px var(--accent-glow);
+}
+
+.btn-premium:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 15px 40px -5px var(--accent-glow);
 }
 
 /* Section Common */
