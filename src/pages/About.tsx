@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Target, Award, Users, ShieldCheck, Cpu, Zap, Activity, Sparkles, Microscope, Compass } from 'lucide-react';
+import { Target, Award, Users, ShieldCheck, Activity, Sparkles, Microscope, Compass } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const fadeInUp = {
