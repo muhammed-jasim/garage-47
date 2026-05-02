@@ -1,10 +1,11 @@
-import { ArrowRight, ArrowLeft, Play, Eye } from 'lucide-react';
+import { ArrowRight, Play, Eye, CheckCircle2, Star, ShieldCheck, Clock, Cpu, Zap, Activity } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import BeforeAfterSlider from '../components/BeforeAfterSlider';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
 const staggerContainer = {
@@ -58,52 +59,106 @@ export default function Home() {
         <div className="hero-glow"></div>
       </section>
 
-      {/* About Section */}
-      <section className="about-section" id="about">
+      {/* About Section - Bento Style */}
+      <section className="about-section bento-section" id="about">
         <motion.div 
-          className="about-container"
+          className="section-header"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+        >
+          <div className="section-title-wrapper" style={{ margin: '0 auto', textAlign: 'center', alignItems: 'center' }}>
+            <span className="section-eyebrow">Our Philosophy</span>
+            <h2 className="section-title">Redefining <span className="text-gradient">Perfection</span></h2>
+          </div>
+        </motion.div>
+
+        <motion.div 
+          className="bento-grid"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
         >
-          <motion.div className="about-image-wrapper" variants={fadeInUp}>
-            <div className="about-logo-glow"></div>
-            <img src="/dp.jpg" alt="Garage 47 Logo" className="about-logo" />
-            <div className="about-stats-card">
-              <span className="stat-number">10+</span>
-              <span className="stat-label">Years of<br/>Excellence</span>
-            </div>
-          </motion.div>
-          <motion.div className="about-content" variants={fadeInUp}>
-            <span className="section-eyebrow">Our Story</span>
-            <h2 className="section-title">Redefining <br/><span className="text-gradient">Perfection</span></h2>
-            <p className="about-desc">
-              Garage 47 Calicut is the ultimate destination for premium car detailing, paint correction, and ceramic coating. Our team of expert artisans combines cutting-edge technology with meticulous attention to detail to transform your vehicle into a masterpiece.
-            </p>
-            <p className="about-desc">
-              With a commitment to excellence and a passion for automotive aesthetics, we ensure every car that leaves our workshop is a testament to our craftsmanship.
-            </p>
-            <div className="about-features">
-              <div className="feature-item">
-                <div className="feature-icon-wrapper">✓</div>
-                <span>Certified Detailers</span>
-              </div>
-              <div className="feature-item">
-                <div className="feature-icon-wrapper">✓</div>
-                <span>Premium Products</span>
-              </div>
-              <div className="feature-item">
-                <div className="feature-icon-wrapper">✓</div>
-                <span>100% Satisfaction</span>
-              </div>
-              <div className="feature-item">
-                <div className="feature-icon-wrapper">✓</div>
-                <span>Advanced Tech</span>
+          {/* Main Visual - Large left box */}
+          <motion.div className="bento-item bento-visual" variants={fadeInUp}>
+            <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&q=80" alt="Detailing" className="bento-bg" />
+            <div className="bento-overlay"></div>
+            <div className="bento-content bottom-left">
+              <div className="experience-badge-modern">
+                <span className="years">10<span className="plus">+</span></span>
+                <span className="text">Years of<br/>Mastery</span>
               </div>
             </div>
-            <button className="btn mt-4">Discover More <ArrowRight size={18} /></button>
           </motion.div>
+
+          {/* Intro Text - Top right */}
+          <motion.div className="bento-item bento-text-highlight" variants={fadeInUp}>
+            <div className="bento-glow"></div>
+            <div className="bento-status-badge">
+              <div className="pulse-dot"></div>
+              <span>Protocol: Active</span>
+            </div>
+            <div className="bento-content">
+              <h3>Precision Engineering</h3>
+              <p>Garage 47 Calicut is an advanced automotive laboratory specializing in molecular-level paint correction and multi-layer ceramic protection.</p>
+            </div>
+          </motion.div>
+
+          {/* Stats - Middle right */}
+          <motion.div className="bento-item bento-stats" variants={fadeInUp}>
+             <div className="bento-stat-box">
+                <div className="stat-icon-mini"><Activity size={16} /></div>
+                <span className="stat-num">5K+</span>
+                <span className="stat-label">Units Restored</span>
+             </div>
+             <div className="bento-stat-box">
+                <div className="stat-icon-mini"><ShieldCheck size={16} /></div>
+                <span className="stat-num">100%</span>
+                <span className="stat-label">QC Accuracy</span>
+             </div>
+          </motion.div>
+
+          {/* Deep text - Bottom right */}
+          <motion.div className="bento-item bento-text-deep" variants={fadeInUp}>
+            <div className="bento-content">
+              <p>Our artisans combine cutting-edge technology with meticulous attention to detail. Every vehicle that leaves our workshop is a testament to uncompromising craftsmanship.</p>
+              <Link to="/about" className="btn-link mt-4" style={{ textDecoration: 'none' }}>Discover Our Method <ArrowRight size={16} /></Link>
+            </div>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Before / After Transformation Section */}
+      <section className="transformation-section" style={{ backgroundColor: 'var(--bg-secondary)', padding: '100px 5%' }}>
+        <motion.div 
+          className="section-header"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+        >
+          <div className="section-title-wrapper" style={{ margin: '0 auto', textAlign: 'center', alignItems: 'center' }}>
+            <span className="section-eyebrow">Real Results</span>
+            <h2 className="section-title">Witness The <span className="text-gradient">Transformation</span></h2>
+            <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '20px auto 0' }}>
+              Slide to see the difference our premium paint correction and ceramic coating services make. We bring back the showroom shine.
+            </p>
+          </div>
+        </motion.div>
+        
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          style={{ maxWidth: '1000px', margin: '0 auto' }}
+        >
+          <BeforeAfterSlider 
+            beforeImage="https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&q=80" 
+            afterImage="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80"
+          />
         </motion.div>
       </section>
 
@@ -175,7 +230,7 @@ export default function Home() {
             <span className="section-eyebrow">Expertise</span>
             <h2 className="section-title">Our Services</h2>
           </div>
-          <button className="btn btn-glass">View All <ArrowRight size={18} /></button>
+          <Link to="/services"><button className="btn btn-glass">View All <ArrowRight size={18} /></button></Link>
         </motion.div>
         
         <motion.div 
@@ -213,10 +268,21 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section className="partners">
-        {['NGK', 'Toyota', 'FIAT', 'Jeep', 'MG Motors', 'Audi'].map((partner, idx) => (
-          <div className="partner-logo" key={idx}>{partner}</div>
-        ))}
+      <section className="partners-marquee-section">
+        <div className="partners-marquee-container">
+          <div className="partners-marquee-track">
+            {[
+              'NGK', 'TOYOTA', 'FIAT', 'JEEP', 'MG MOTORS', 'AUDI',
+              'BMW', 'MERCEDES-BENZ', 'PORSCHE', 'FERRARI', 'LAMBORGHINI',
+              'TESLA', 'LEXUS', 'JAGUAR', 'ASTON MARTIN', 'LAND ROVER',
+              'NGK', 'TOYOTA', 'FIAT', 'JEEP', 'MG MOTORS', 'AUDI',
+              'BMW', 'MERCEDES-BENZ', 'PORSCHE', 'FERRARI', 'LAMBORGHINI',
+              'TESLA', 'LEXUS', 'JAGUAR', 'ASTON MARTIN', 'LAND ROVER'
+            ].map((partner, idx) => (
+              <div className="partner-logo" key={idx}>{partner}</div>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="portfolio" id="portfolio">
@@ -229,11 +295,10 @@ export default function Home() {
         >
           <div className="section-title-wrapper">
             <span className="section-eyebrow">Showcase</span>
-            <h2 className="section-title">Recent Works</h2>
+            <h2 className="section-title">Gallery</h2>
           </div>
           <div className="nav-actions">
-            <button className="nav-btn"><ArrowLeft size={20} /></button>
-            <button className="nav-btn"><ArrowRight size={20} /></button>
+            <Link to="/gallery"><button className="btn btn-glass" style={{ whiteSpace: 'nowrap' }}>View All <ArrowRight size={18} /></button></Link>
           </div>
         </motion.div>
         <motion.div 
@@ -258,6 +323,323 @@ export default function Home() {
           ))}
         </motion.div>
       </section>
+
+      {/* NEW FUTURISTIC SECTION: Nano-Tech Laboratory */}
+      <section className="nano-tech-section">
+        <motion.div 
+          className="section-header center-header"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+        >
+          <div className="section-title-wrapper centered">
+            <span className="section-eyebrow">Advanced Engineering</span>
+            <h2 className="section-title">The <span className="text-gradient">Nano-Tech</span> Lab</h2>
+            <p className="max-w-2xl mx-auto mt-4" style={{ color: 'var(--text-secondary)' }}>
+              We utilize aerospace-grade nano-materials that bond at the molecular level to create a 
+              permanent, high-gloss shield for your vehicle.
+            </p>
+          </div>
+        </motion.div>
+
+        <div className="nano-grid">
+          {[
+            { 
+              title: "Graphene Matrix", 
+              spec: "Covalent Bond", 
+              desc: "Engineered with atom-thin carbon layers for extreme heat resistance and unparalleled hardness.",
+              icon: <Cpu size={32} />,
+              color: "#3b82f6"
+            },
+            { 
+              title: "Hydro-Sonic PPF", 
+              spec: "Self-Healing", 
+              desc: "Advanced thermoplastic polyurethane that heals surface scratches instantly under heat.",
+              icon: <Zap size={32} />,
+              color: "#8b5cf6"
+            },
+            { 
+              title: "Ceramic Pro 9H", 
+              spec: "Nano-Shield", 
+              desc: "Multi-layered liquid glass technology that creates a permanent protective skin.",
+              icon: <ShieldCheck size={32} />,
+              color: "#10b981"
+            }
+          ].map((tech, i) => (
+            <motion.div 
+              key={i}
+              className="nano-card"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              whileHover={{ y: -10 }}
+            >
+              <div className="nano-card-glow" style={{ background: `radial-gradient(circle at center, ${tech.color}22, transparent 70%)` }}></div>
+              <div className="nano-card-header">
+                <div className="nano-icon" style={{ color: tech.color }}>{tech.icon}</div>
+                <div className="nano-badge" style={{ borderColor: `${tech.color}44`, color: tech.color }}>{tech.spec}</div>
+              </div>
+              <h3 className="nano-title">{tech.title}</h3>
+              <p className="nano-desc">{tech.desc}</p>
+              <div className="nano-footer">
+                <div className="nano-progress-bar">
+                  <div className="nano-progress-fill" style={{ width: '85%', backgroundColor: tech.color }}></div>
+                </div>
+                <span className="nano-stat">Structural Integrity: 98.4%</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Floating background elements for the lab section */}
+        <div className="lab-circle c1"></div>
+        <div className="lab-circle c2"></div>
+      </section>
+
+      {/* Process Section */}
+      <section className="process-section">
+        <motion.div 
+          className="section-header"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+        >
+          <div className="section-title-wrapper">
+            <span className="section-eyebrow">How It Works</span>
+            <h2 className="section-title">Our Process</h2>
+          </div>
+        </motion.div>
+        <motion.div 
+          className="process-grid"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+        >
+          {[
+            { step: '01', title: 'Consultation', desc: 'We assess your vehicle and discuss your specific detailing needs.', icon: <CheckCircle2 size={32} /> },
+            { step: '02', title: 'Preparation', desc: 'Thorough cleaning and decontamination to prepare the surface.', icon: <Clock size={32} /> },
+            { step: '03', title: 'Correction', desc: 'Meticulous paint correction to remove imperfections and scratches.', icon: <ShieldCheck size={32} /> },
+            { step: '04', title: 'Protection', desc: 'Application of ceramic coating or PPF for long-lasting brilliance.', icon: <Star size={32} /> }
+          ].map((item, idx) => (
+            <motion.div className="process-card" variants={fadeInUp} key={idx}>
+              <div className="process-icon">{item.icon}</div>
+              <h3 className="process-title">{item.step}. {item.title}</h3>
+              <p className="process-desc">{item.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="testimonials-section">
+        <motion.div 
+          className="section-header"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+        >
+          <div className="section-title-wrapper">
+            <span className="section-eyebrow">Reviews</span>
+            <h2 className="section-title">Client Feedback</h2>
+          </div>
+        </motion.div>
+        <motion.div 
+          className="testimonials-grid"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+        >
+          {[
+            { name: "Rahul S.", car: "BMW M3", review: "Absolutely phenomenal work. The ceramic coating made my car look better than when it rolled off the showroom floor." },
+            { name: "Arun K.", car: "Porsche 911", review: "The attention to detail here is unmatched. They managed to remove swirls I thought were permanent. Highly recommend." },
+            { name: "Sneha M.", car: "Audi Q5", review: "Professional, timely, and the results speak for themselves. The interior detailing made it feel like a brand new car again." }
+          ].map((testimonial, idx) => (
+            <motion.div className="testimonial-card" variants={fadeInUp} key={idx}>
+              <div className="stars">
+                {[1,2,3,4,5].map(star => <Star key={star} size={16} fill="var(--accent-blue)" color="var(--accent-blue)" />)}
+              </div>
+              <p className="review-text">"{testimonial.review}"</p>
+              <div className="client-info">
+                <h4>{testimonial.name}</h4>
+                <span>{testimonial.car}</span>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="cta-section">
+        <motion.div 
+          className="cta-container"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+        >
+          <div className="cta-content">
+            <h2>Ready to transform your vehicle?</h2>
+            <p>Book your appointment today and experience the ultimate in automotive care.</p>
+            <div className="cta-buttons">
+              <button className="btn">Book Appointment <ArrowRight size={18} /></button>
+              <button className="btn btn-glass">Contact Us</button>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      <style>{`
+        .nano-tech-section {
+          padding: 120px 5%;
+          background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 60%);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .centered {
+          margin: 0 auto;
+          text-align: center;
+          align-items: center;
+        }
+
+        .nano-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 30px;
+          max-width: 1300px;
+          margin: 60px auto 0;
+          position: relative;
+          z-index: 2;
+        }
+
+        .nano-card {
+          background: var(--bg-card);
+          border: 1px solid var(--border-light);
+          border-radius: 30px;
+          padding: 40px;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          backdrop-filter: blur(10px);
+        }
+
+        .nano-card-glow {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          opacity: 0.5;
+        }
+
+        .nano-card-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-bottom: 30px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .nano-icon {
+          width: 60px;
+          height: 60px;
+          background: rgba(255, 255, 255, 0.03);
+          border-radius: 18px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .nano-badge {
+          font-size: 0.7rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          padding: 6px 14px;
+          border: 1px solid;
+          border-radius: 100px;
+        }
+
+        .nano-title {
+          font-size: 1.8rem;
+          font-weight: 800;
+          margin-bottom: 15px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .nano-desc {
+          color: var(--text-secondary);
+          line-height: 1.7;
+          margin-bottom: 30px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .nano-footer {
+          position: relative;
+          z-index: 1;
+        }
+
+        .nano-progress-bar {
+          width: 100%;
+          height: 4px;
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 2px;
+          margin-bottom: 12px;
+        }
+
+        .nano-progress-fill {
+          height: 100%;
+          border-radius: 2px;
+          box-shadow: 0 0 10px currentColor;
+        }
+
+        .nano-stat {
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: rgba(255, 255, 255, 0.4);
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        .lab-circle {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(100px);
+          z-index: 1;
+          opacity: 0.1;
+        }
+
+        .lab-circle.c1 {
+          width: 400px;
+          height: 400px;
+          background: var(--accent-blue);
+          top: -100px;
+          right: -100px;
+        }
+
+        .lab-circle.c2 {
+          width: 300px;
+          height: 300px;
+          background: var(--accent-purple);
+          bottom: -50px;
+          left: -50px;
+        }
+
+        @media (max-width: 768px) {
+          .nano-grid {
+            grid-template-columns: 1fr;
+          }
+          .nano-card {
+            padding: 30px;
+          }
+        }
+      `}</style>
     </>
   );
 }

@@ -3,7 +3,7 @@ import { Users, Activity, DollarSign, Calendar, ArrowRight, Play } from 'lucide-
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
 const staggerContainer = {
@@ -84,7 +84,9 @@ export default function Dashboard() {
           <div className="video-grid">
             {[
               { title: "Ceramic Coating Promo", url: "https://player.vimeo.com/external/517090025.sd.mp4?s=d0fb5c5f85fa3ef38112d7c50a58a74e92ebccaf&profile_id=164&oauth2_token_id=57447761" },
-              { title: "Interior Detailing Ad", url: "https://player.vimeo.com/external/403623547.sd.mp4?s=c9b3a0c5c4e976f932845cfa8e64c1b9f7a75905&profile_id=164&oauth2_token_id=57447761" }
+              { title: "Interior Detailing Ad", url: "https://player.vimeo.com/external/403623547.sd.mp4?s=c9b3a0c5c4e976f932845cfa8e64c1b9f7a75905&profile_id=164&oauth2_token_id=57447761" },
+              { title: "Paint Correction Process", url: "https://player.vimeo.com/external/517090025.sd.mp4?s=d0fb5c5f85fa3ef38112d7c50a58a74e92ebccaf&profile_id=164&oauth2_token_id=57447761" },
+              { title: "PPF Installation Demo", url: "https://player.vimeo.com/external/403623547.sd.mp4?s=c9b3a0c5c4e976f932845cfa8e64c1b9f7a75905&profile_id=164&oauth2_token_id=57447761" }
             ].map((vid, idx) => (
               <div key={idx} className="video-card">
                 <video 
@@ -107,34 +109,68 @@ export default function Dashboard() {
           </div>
         </motion.div>
 
-        <motion.div 
-          className="recent-activity"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeInUp}
-        >
-          <h3>Recent Jobs</h3>
-          <div className="activity-list">
-            {[
-              { car: "Porsche 911", service: "Full Paint Correction", status: "In Progress", time: "2 hours ago" },
-              { car: "BMW M3", service: "Ceramic Coating", status: "Completed", time: "5 hours ago" },
-              { car: "Audi RS6", service: "Interior Detailing", status: "Pending", time: "1 day ago" },
-            ].map((job, idx) => (
-              <div key={idx} className="activity-item">
-                <div className="activity-info">
-                  <h4>{job.car}</h4>
-                  <p>{job.service}</p>
+        <div className="dashboard-columns" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '30px', marginTop: '40px' }}>
+          <motion.div 
+            className="recent-activity"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <h3>Recent Jobs</h3>
+            <div className="activity-list">
+              {[
+                { car: "Porsche 911", service: "Full Paint Correction", status: "In Progress", time: "2 hours ago" },
+                { car: "BMW M3", service: "Ceramic Coating", status: "Completed", time: "5 hours ago" },
+                { car: "Audi RS6", service: "Interior Detailing", status: "Pending", time: "1 day ago" },
+                { car: "Tesla Model S", service: "PPF Installation", status: "In Progress", time: "1 day ago" },
+                { car: "Mercedes G63", service: "Maintenance Wash", status: "Completed", time: "2 days ago" },
+              ].map((job, idx) => (
+                <div key={idx} className="activity-item">
+                  <div className="activity-info">
+                    <h4>{job.car}</h4>
+                    <p>{job.service}</p>
+                  </div>
+                  <div className="activity-status">
+                    <span className={`status-badge ${job.status.toLowerCase().replace(' ', '-')}`}>{job.status}</span>
+                    <span className="time">{job.time}</span>
+                  </div>
                 </div>
-                <div className="activity-status">
-                  <span className={`status-badge ${job.status.toLowerCase().replace(' ', '-')}`}>{job.status}</span>
-                  <span className="time">{job.time}</span>
+              ))}
+            </div>
+            <button className="btn btn-outline mt-6">View All Activity <ArrowRight size={18} /></button>
+          </motion.div>
+
+          <motion.div 
+            className="recent-activity upcoming-appointments"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <h3>Upcoming Appointments</h3>
+            <div className="activity-list">
+              {[
+                { client: "John Doe", car: "Lexus LC500", date: "Today, 2:00 PM", type: "Inspection" },
+                { client: "Sarah Smith", car: "Range Rover", date: "Tomorrow, 9:00 AM", type: "Ceramic Coating" },
+                { client: "Mike Johnson", car: "Ferrari 488", date: "Oct 15, 10:00 AM", type: "Paint Correction" },
+                { client: "Emma Davis", car: "Porsche Macan", date: "Oct 16, 1:00 PM", type: "Interior Detailing" },
+                { client: "David Wilson", car: "McLaren 720S", date: "Oct 18, 9:00 AM", type: "Full PPF" },
+              ].map((appt, idx) => (
+                <div key={idx} className="activity-item">
+                  <div className="activity-info">
+                    <h4>{appt.car}</h4>
+                    <p>{appt.client} - {appt.type}</p>
+                  </div>
+                  <div className="activity-status">
+                    <span className="time" style={{ color: 'var(--accent-blue)', fontWeight: 600 }}>{appt.date}</span>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-          <button className="btn btn-outline mt-6">View All Activity <ArrowRight size={18} /></button>
-        </motion.div>
+              ))}
+            </div>
+            <button className="btn btn-outline mt-6">Manage Calendar <Calendar size={18} style={{ marginLeft: '8px' }} /></button>
+          </motion.div>
+        </div>
       </section>
     </div>
   );
