@@ -91,7 +91,7 @@ const stats = [
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-};
+} as const;
 
 const staggerContainer = {
   hidden: { opacity: 0 },
@@ -101,7 +101,7 @@ const staggerContainer = {
       staggerChildren: 0.1
     }
   }
-};
+} as const;
 
 export default function Gallery() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -139,7 +139,7 @@ export default function Gallery() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: "easeOut" as const }}
           >
             <span className="section-eyebrow modern-eyebrow">Visual Archive</span>
             <h1 className="page-title main-title">
@@ -215,7 +215,7 @@ export default function Gallery() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.4, ease: "circOut" }}
+                transition={{ duration: 0.4, ease: "circOut" as const }}
                 key={item.id}
                 className={`bento-gallery-item ${item.size}`}
                 onClick={() => handleImageClick(item.id)}
