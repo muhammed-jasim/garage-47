@@ -102,20 +102,20 @@ export default function Contact() {
               <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
                 <div style={{ flex: '1 1 200px' }}>
                   <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Full Name</label>
-                  <input type="text" placeholder="John Doe" style={{ width: '100%', padding: '14px 20px', borderRadius: '12px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-medium)', color: '#fff', fontSize: '1rem', outline: 'none' }} />
+                  <input type="text" placeholder="John Doe" style={{ width: '100%', padding: '14px 20px', borderRadius: '12px', background: 'var(--bg-glass)', border: '1px solid var(--border-medium)', color: 'var(--text-primary)', fontSize: '1rem', outline: 'none' }} />
                 </div>
                 <div style={{ flex: '1 1 200px' }}>
                   <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Phone Number</label>
-                  <input type="tel" placeholder="+91 XXXXX XXXXX" style={{ width: '100%', padding: '14px 20px', borderRadius: '12px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-medium)', color: '#fff', fontSize: '1rem', outline: 'none' }} />
+                  <input type="tel" placeholder="+91 XXXXX XXXXX" style={{ width: '100%', padding: '14px 20px', borderRadius: '12px', background: 'var(--bg-glass)', border: '1px solid var(--border-medium)', color: 'var(--text-primary)', fontSize: '1rem', outline: 'none' }} />
                 </div>
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Email Address</label>
-                <input type="email" placeholder="john@example.com" style={{ width: '100%', padding: '14px 20px', borderRadius: '12px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-medium)', color: '#fff', fontSize: '1rem', outline: 'none' }} />
+                <input type="email" placeholder="john@example.com" style={{ width: '100%', padding: '14px 20px', borderRadius: '12px', background: 'var(--bg-glass)', border: '1px solid var(--border-medium)', color: 'var(--text-primary)', fontSize: '1rem', outline: 'none' }} />
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Service Needed</label>
-                <select style={{ width: '100%', padding: '14px 20px', borderRadius: '12px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-medium)', color: '#fff', fontSize: '1rem', outline: 'none', appearance: 'none' }}>
+                <select style={{ width: '100%', padding: '14px 20px', borderRadius: '12px', background: 'var(--bg-glass)', border: '1px solid var(--border-medium)', color: 'var(--text-primary)', fontSize: '1rem', outline: 'none', appearance: 'none' }}>
                   <option value="" disabled selected>Select a service</option>
                   <option value="ceramic">Ceramic Coating</option>
                   <option value="ppf">Paint Protection Film</option>
@@ -126,7 +126,7 @@ export default function Contact() {
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Message</label>
-                <textarea rows={4} placeholder="Tell us about your vehicle..." style={{ width: '100%', padding: '14px 20px', borderRadius: '12px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-medium)', color: '#fff', fontSize: '1rem', outline: 'none', resize: 'vertical' }}></textarea>
+                <textarea rows={4} placeholder="Tell us about your vehicle..." style={{ width: '100%', padding: '14px 20px', borderRadius: '12px', background: 'var(--bg-glass)', border: '1px solid var(--border-medium)', color: 'var(--text-primary)', fontSize: '1rem', outline: 'none', resize: 'vertical' }}></textarea>
               </div>
               <button type="submit" className="btn" style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', marginTop: '10px' }}>
                 Send Request <Send size={18} />
@@ -149,7 +149,7 @@ export default function Contact() {
               overflow: 'hidden',
               border: '1px solid var(--border-light)',
               height: '450px',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
+              boxShadow: 'var(--card-shadow)'
             }}
           >
             <iframe 

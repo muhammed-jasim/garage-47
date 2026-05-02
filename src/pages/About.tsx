@@ -340,7 +340,7 @@ export default function About() {
           font-size: 2.5rem;
           font-weight: 900;
           line-height: 1;
-          color: #fff;
+          color: var(--text-primary);
         }
 
         .experience-orb .plus { color: var(--accent-blue); }
@@ -356,7 +356,7 @@ export default function About() {
 
         .text-large {
           font-size: clamp(1.1rem, 3vw, 1.3rem);
-          color: #fff;
+          color: var(--text-primary);
           font-weight: 600;
           line-height: 1.5;
           margin-bottom: 25px;
@@ -513,7 +513,7 @@ export default function About() {
           display: flex;
           align-items: center;
           justify-content: center;
-          color: #fff;
+          color: var(--text-inverse);
         }
 
         .value-info h4 {

@@ -107,7 +107,7 @@ function AppContent() {
       <footer className="footer" id="contact">
         {!hideNewsletter && (
           <div className="footer-top">
-            <div className="newsletter-banner" style={{ background: 'linear-gradient(135deg, rgba(20,20,30,0.9), rgba(5,5,7,1))', borderRadius: '30px', padding: '60px', position: 'relative', overflow: 'hidden', border: '1px solid var(--border-medium)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '40px' }}>
+            <div className="newsletter-banner">
               <div style={{ position: 'absolute', top: '-50%', right: '-10%', width: '300px', height: '300px', background: 'var(--accent-blue)', filter: 'blur(100px)', opacity: '0.2', borderRadius: '50%' }}></div>
               <div style={{ flex: '1 1 400px', position: 'relative', zIndex: 2 }}>
                 <span className="section-eyebrow" style={{ color: 'var(--accent-purple)' }}>VIP Access</span>
@@ -116,7 +116,7 @@ function AppContent() {
               </div>
               <div style={{ flex: '1 1 400px', position: 'relative', zIndex: 2 }}>
                 <form className="newsletter-form" style={{ display: 'flex', gap: '15px' }} onSubmit={(e) => e.preventDefault()}>
-                  <input type="email" placeholder="Enter your email address..." style={{ flex: 1, padding: '18px 24px', borderRadius: '100px', background: 'var(--bg-card)', border: '1px solid var(--border-light)', color: '#fff', fontSize: '1rem', outline: 'none' }} />
+                  <input type="email" placeholder="Enter your email address..." style={{ flex: 1, padding: '18px 24px', borderRadius: '100px', background: 'var(--bg-card)', border: '1px solid var(--border-light)', color: 'var(--text-primary)', fontSize: '1rem', outline: 'none' }} />
                   <button type="submit" className="btn" style={{ whiteSpace: 'nowrap' }}>Subscribe <Mail size={18} /></button>
                 </form>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginTop: '15px', marginLeft: '20px' }}>* We respect your inbox. No spam, ever.</p>
@@ -130,7 +130,7 @@ function AppContent() {
               <img src="/dp.jpg" alt="Garage 47" style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
               <span style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.2 }}>
                 <span className="logo-accent" style={{ fontSize: '1.2rem', fontWeight: 800 }}>GARAGE 47</span>
-                <span style={{ fontSize: '0.8rem', letterSpacing: '2px', color: '#fff' }}>CALICUT</span>
+                <span style={{ fontSize: '0.8rem', letterSpacing: '2px', color: 'var(--accent-blue)' }}>CALICUT</span>
               </span>
             </Link>
             <p>Redefining automotive perfection through cutting-edge detailing and correction.</p>

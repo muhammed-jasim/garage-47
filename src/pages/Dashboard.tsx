@@ -147,6 +147,7 @@ export default function Dashboard() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
+            style={{ boxShadow: 'var(--card-shadow)', border: '1px solid var(--border-light)', background: 'var(--bg-card)' }}
           >
             <h3>Upcoming Appointments</h3>
             <div className="activity-list">

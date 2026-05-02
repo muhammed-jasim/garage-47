@@ -105,7 +105,7 @@ export default function Services() {
                     onMouseEnter={(e) => {
                       e.currentTarget.style.borderColor = 'var(--accent-blue)';
                       e.currentTarget.style.transform = 'translateY(-5px)';
-                      e.currentTarget.style.boxShadow = '0 15px 30px rgba(0,0,0,0.4)';
+                      e.currentTarget.style.boxShadow = 'var(--card-shadow)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.borderColor = 'var(--border-light)';
@@ -126,7 +126,7 @@ export default function Services() {
                       <span style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
                         <Sun size={16} /> Est. Time: {service.time}
                       </span>
-                      <Link to={`/service/${service.id}`} style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#fff', fontWeight: 600, fontSize: '0.95rem' }}>
+                      <Link to={`/service/${service.id}`} style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-primary)', fontWeight: 600, fontSize: '0.95rem' }}>
                         View Details <ArrowRight size={16} color="var(--accent-blue)" />
                       </Link>
                     </div>
@@ -165,7 +165,7 @@ export default function Services() {
                   padding: '30px'
                 }}
               >
-                <h4 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '10px', color: '#fff' }}>{faq.q}</h4>
+                <h4 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '10px', color: 'var(--text-primary)' }}>{faq.q}</h4>
                 <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6' }}>{faq.a}</p>
               </motion.div>
             ))}
@@ -182,7 +182,8 @@ export default function Services() {
           textAlign: 'center',
           maxWidth: '1200px',
           margin: '0 auto',
-          border: '1px solid rgba(255,255,255,0.05)'
+          border: '1px solid var(--border-medium)',
+          boxShadow: 'var(--card-shadow)'
         }}>
           <h2 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '15px' }}>Not sure what your car needs?</h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginBottom: '30px' }}>
@@ -190,7 +191,7 @@ export default function Services() {
           </p>
           <button className="btn">Book Free Consultation <ArrowRight size={18} /></button>
           
-          <div style={{ marginTop: '40px', paddingTop: '30px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+          <div style={{ marginTop: '40px', paddingTop: '30px', borderTop: '1px solid var(--border-light)' }}>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
               For more details and live project updates, visit: 
               <a href="https://www.instagram.com/garage47calicut/" target="_blank" rel="noreferrer" style={{ color: 'var(--accent-blue)', marginLeft: '8px', fontWeight: 600, textDecoration: 'underline' }}>

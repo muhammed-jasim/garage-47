@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
 
 const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
 const staggerContainer = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
 };
 
 export default function Home() {
@@ -153,7 +153,7 @@ export default function Home() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
-          style={{ maxWidth: '1000px', margin: '0 auto' }}
+          style={{ maxWidth: '1000px', margin: '0 auto', boxShadow: 'var(--card-shadow)', borderRadius: '32px', overflow: 'hidden' }}
         >
           <BeforeAfterSlider 
             beforeImage="https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&q=80" 
@@ -465,7 +465,7 @@ export default function Home() {
               </div>
               <p className="review-text">"{testimonial.review}"</p>
               <div className="client-info">
-                <h4>{testimonial.name}</h4>
+                <h4 style={{ color: 'var(--text-primary)' }}>{testimonial.name}</h4>
                 <span>{testimonial.car}</span>
               </div>
             </motion.div>
@@ -602,7 +602,7 @@ export default function Home() {
         .nano-stat {
           font-size: 0.75rem;
           font-weight: 600;
-          color: rgba(255, 255, 255, 0.4);
+          color: var(--text-secondary);
           text-transform: uppercase;
           letter-spacing: 1px;
         }

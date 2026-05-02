@@ -145,8 +145,8 @@ export default function ServiceDetail() {
             ))}
           </ul>
           
-          <div style={{ padding: '30px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', textAlign: 'center', marginTop: '40px' }}>
-             <h4 style={{ fontSize: '1.2rem', marginBottom: '10px' }}>Ready to Book?</h4>
+          <div style={{ padding: '30px', background: 'var(--bg-glass)', border: '1px solid var(--border-light)', borderRadius: '12px', textAlign: 'center', marginTop: '40px' }}>
+             <h4 style={{ fontSize: '1.2rem', marginBottom: '10px', color: 'var(--text-primary)' }}>Ready to Book?</h4>
              <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '20px' }}>Secure your spot today.</p>
              <button className="btn" style={{ width: '100%', justifyContent: 'center' }}>Book Appointment</button>
           </div>

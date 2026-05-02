@@ -133,7 +133,7 @@ export default function Gallery() {
           alt="Gallery Hero" 
           className="page-hero-bg" 
         />
-        <div className="page-hero-overlay" style={{ background: 'linear-gradient(to bottom, rgba(5,5,7,0.7), var(--bg-color))' }}></div>
+        <div className="page-hero-overlay" style={{ background: 'linear-gradient(to bottom, transparent, var(--bg-color))' }}></div>
         
         <div className="page-hero-content">
           <motion.div
@@ -362,10 +362,6 @@ export default function Gallery() {
             className="lightbox-overlay"
             onClick={closeLightbox}
           >
-            <button className="lightbox-close-modern" onClick={closeLightbox}>
-              <X size={24} />
-            </button>
-            
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -373,6 +369,9 @@ export default function Gallery() {
               className="lightbox-card"
               onClick={(e) => e.stopPropagation()}
             >
+              <button className="lightbox-close-modern" onClick={closeLightbox}>
+                <X size={20} />
+              </button>
               <div className="lightbox-media">
                 <img src={activeItem.img} alt={activeItem.title} />
               </div>
@@ -439,7 +438,7 @@ export default function Gallery() {
         .mouse {
           width: 26px;
           height: 44px;
-          border: 2px solid rgba(255,255,255,0.2);
+          border: 2px solid var(--border-medium);
           border-radius: 20px;
           position: relative;
         }
@@ -465,7 +464,7 @@ export default function Gallery() {
           font-size: 0.7rem;
           letter-spacing: 3px;
           font-weight: 600;
-          color: rgba(255,255,255,0.4);
+          color: var(--text-secondary);
         }
 
         .center-header {
@@ -498,7 +497,7 @@ export default function Gallery() {
         }
 
         .modern-filter-btn.active {
-          color: #fff;
+          color: var(--text-inverse);
         }
 
         .active-bg {
@@ -727,7 +726,7 @@ export default function Gallery() {
         }
 
         .point-label {
-          background: rgba(10, 10, 15, 0.8);
+          background: var(--bg-secondary);
           backdrop-filter: blur(10px);
           padding: 10px 15px;
           border-radius: 12px;
@@ -735,6 +734,7 @@ export default function Gallery() {
           display: flex;
           flex-direction: column;
           min-width: 150px;
+          box-shadow: var(--card-shadow);
         }
 
         .label-title {
@@ -747,7 +747,7 @@ export default function Gallery() {
         .label-val {
           font-size: 0.95rem;
           font-weight: 700;
-          color: #fff;
+          color: var(--text-primary);
         }
 
         .hud-stats-grid {
@@ -911,11 +911,11 @@ export default function Gallery() {
 
         .lightbox-close-modern {
           position: absolute;
-          top: 40px;
-          right: 40px;
-          width: 60px;
-          height: 60px;
-          background: rgba(255,255,255,0.05);
+          top: 20px;
+          right: 20px;
+          width: 40px;
+          height: 40px;
+          background: rgba(0, 0, 0, 0.5);
           border: 1px solid rgba(255,255,255,0.1);
           border-radius: 50%;
           color: #fff;
@@ -934,15 +934,17 @@ export default function Gallery() {
 
         .lightbox-card {
           width: 100%;
-          max-width: 1300px;
+          max-width: 1200px;
           height: auto;
-          max-height: 90vh;
+          max-height: 85vh;
           background: var(--bg-card);
-          border-radius: 32px;
+          border-radius: 40px;
           overflow: hidden;
           display: grid;
-          grid-template-columns: 1fr 400px;
+          grid-template-columns: 1.2fr 1fr;
           border: 1px solid var(--border-medium);
+          position: relative;
+          box-shadow: 0 50px 100px rgba(0,0,0,0.6);
         }
 
         .lightbox-media {
@@ -960,10 +962,12 @@ export default function Gallery() {
         }
 
         .lightbox-info {
-          padding: 60px 40px;
+          padding: 60px;
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
+          justify-content: center;
+          background: var(--bg-card);
+          gap: 32px;
         }
 
         .item-cat-badge {
@@ -977,10 +981,11 @@ export default function Gallery() {
         }
 
         .info-title {
-          font-size: 2.5rem;
+          font-size: 3rem;
           font-weight: 800;
           line-height: 1.1;
           margin-bottom: 24px;
+          color: var(--text-primary);
         }
 
         .info-desc {
