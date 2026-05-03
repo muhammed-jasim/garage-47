@@ -62,13 +62,13 @@ export default function Home() {
       {/* About Section - Bento Style */}
       <section className="about-section bento-section" id="about">
         <motion.div 
-          className="section-header"
+          className="section-header centered"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
         >
-          <div className="section-title-wrapper" style={{ margin: '0 auto', textAlign: 'center', alignItems: 'center' }}>
+          <div className="section-title-wrapper centered">
             <span className="section-eyebrow">Our Philosophy</span>
             <h2 className="section-title">Redefining <span className="text-gradient">Perfection</span></h2>
           </div>
@@ -131,19 +131,19 @@ export default function Home() {
       </section>
 
       {/* Before / After Transformation Section */}
-      <section className="transformation-section" style={{ backgroundColor: 'var(--bg-secondary)', padding: '100px 5%' }}>
+      <section className="transformation-section" style={{ backgroundColor: 'var(--bg-secondary)' }}>
         <motion.div 
-          className="section-header"
+          className="section-header centered"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
         >
-          <div className="section-title-wrapper" style={{ margin: '0 auto', textAlign: 'center', alignItems: 'center' }}>
+          <div className="section-title-wrapper centered">
             <span className="section-eyebrow">Real Results</span>
             <h2 className="section-title">Witness The <span className="text-gradient">Transformation</span></h2>
-            <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '20px auto 0' }}>
-              Slide to see the difference our premium paint correction and ceramic coating services make. We bring back the showroom shine.
+            <p className="section-desc centered mt-4">
+              Slide to see the difference our premium paint correction and ceramic coating services make.
             </p>
           </div>
         </motion.div>
@@ -153,7 +153,7 @@ export default function Home() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
-          style={{ maxWidth: '1000px', margin: '0 auto', boxShadow: 'var(--card-shadow)', borderRadius: '32px', overflow: 'hidden' }}
+          className="slider-container"
         >
           <BeforeAfterSlider 
             beforeImage="https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&q=80" 

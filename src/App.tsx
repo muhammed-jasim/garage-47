@@ -108,30 +108,29 @@ function AppContent() {
         {!hideNewsletter && (
           <div className="footer-top">
             <div className="newsletter-banner">
-              <div style={{ position: 'absolute', top: '-50%', right: '-10%', width: '300px', height: '300px', background: 'var(--accent-blue)', filter: 'blur(100px)', opacity: '0.2', borderRadius: '50%' }}></div>
-              <div style={{ flex: '1 1 400px', position: 'relative', zIndex: 2 }}>
+              <div className="newsletter-content">
                 <span className="section-eyebrow" style={{ color: 'var(--accent-purple)' }}>VIP Access</span>
-                <h2 style={{ fontSize: '2.5rem', fontWeight: 800, margin: '10px 0 15px' }}>Join the <span className="text-gradient">Elite List</span></h2>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: 1.6 }}>Subscribe to receive exclusive offers, early access to new ceramic coating technologies, and premium car care tips from our master detailers.</p>
+                <h2>Join the <span className="text-gradient">Elite List</span></h2>
+                <p>Subscribe to receive exclusive offers, early access to new ceramic coating technologies, and premium car care tips from our master detailers.</p>
               </div>
-              <div style={{ flex: '1 1 400px', position: 'relative', zIndex: 2 }}>
-                <form className="newsletter-form" style={{ display: 'flex', gap: '15px' }} onSubmit={(e) => e.preventDefault()}>
-                  <input type="email" placeholder="Enter your email address..." style={{ flex: 1, padding: '18px 24px', borderRadius: '100px', background: 'var(--bg-card)', border: '1px solid var(--border-light)', color: 'var(--text-primary)', fontSize: '1rem', outline: 'none' }} />
-                  <button type="submit" className="btn" style={{ whiteSpace: 'nowrap' }}>Subscribe <Mail size={18} /></button>
+              <div className="newsletter-form-container">
+                <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
+                  <input type="email" placeholder="Enter your email address..." />
+                  <button type="submit" className="btn">Subscribe <Mail size={18} /></button>
                 </form>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginTop: '15px', marginLeft: '20px' }}>* We respect your inbox. No spam, ever.</p>
+                <p className="newsletter-note">* We respect your inbox. No spam, ever.</p>
               </div>
             </div>
           </div>
         )}
         <div className="footer-grid">
           <div className="footer-col brand-col">
-            <Link to="/" className="logo" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', marginBottom: '20px' }}>
-              <img src="/dp.jpg" alt="Garage 47" style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
-              <span style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.2 }}>
-                <span className="logo-accent" style={{ fontSize: '1.2rem', fontWeight: 800 }}>GARAGE 47</span>
-                <span style={{ fontSize: '0.8rem', letterSpacing: '2px', color: 'var(--accent-blue)' }}>CALICUT</span>
-              </span>
+            <Link to="/" className="logo">
+              <img src="/dp.jpg" alt="Garage 47" className="logo-img" />
+              <div className="logo-text">
+                <span className="logo-accent">GARAGE 47</span>
+                <span className="logo-sub">CALICUT</span>
+              </div>
             </Link>
             <p>Redefining automotive perfection through cutting-edge detailing and correction.</p>
             <div className="social-links">

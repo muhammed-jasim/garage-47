@@ -870,7 +870,7 @@ export default function Gallery() {
         }
 
         .cta-title {
-          font-size: 4rem;
+          font-size: clamp(2rem, 6vw, 3rem);
           font-weight: 900;
           margin-bottom: 24px;
           position: relative;
@@ -981,10 +981,10 @@ export default function Gallery() {
         }
 
         .info-title {
-          font-size: 3rem;
+          font-size: clamp(1.8rem, 5vw, 2.4rem);
           font-weight: 800;
           line-height: 1.1;
-          margin-bottom: 24px;
+          margin-bottom: 20px;
           color: var(--text-primary);
         }
 
