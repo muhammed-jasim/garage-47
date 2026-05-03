@@ -153,7 +153,7 @@ export default function About() {
         <div className="container">
           <div className="values-grid">
             <div className="values-header">
-              <span className="section-eyebrow">Our Philosophy</span>
+              <span className="section-eyebrow">The Ethos</span>
               <h2 className="section-title small">The <span className="text-gradient">Garage 47</span> Standard</h2>
               <p>
                 A commitment to excellence isn't just a slogan; it's a measurable standard that defines our culture.

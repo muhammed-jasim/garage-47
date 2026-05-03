@@ -32,16 +32,24 @@ export default function BeforeAfterSlider({ beforeImage, afterImage }: Props) {
       onMouseMove={handleMove}
       onTouchMove={handleMove}
     >
-      <div className="slider-label before-label">After</div>
-      <div className="slider-label after-label">Before</div>
-      
-      <img src={afterImage} alt="After" className="image-base" />
+      <div className="slider-label before-label">Before</div>
+      <div className="slider-label after-label">After</div>
       
       <img 
         src={beforeImage} 
         alt="Before" 
+        className="image-base" 
+        style={{ objectPosition: 'center' }}
+      />
+      
+      <img 
+        src={afterImage} 
+        alt="After" 
         className="image-clip" 
-        style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
+        style={{ 
+          clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
+          objectPosition: 'center'
+        }}
       />
       
       <div 
@@ -49,12 +57,17 @@ export default function BeforeAfterSlider({ beforeImage, afterImage }: Props) {
         style={{ left: `${sliderPosition}%` }}
       >
         <div className="slider-button">
+          <div className="slider-button-glow"></div>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
+        </div>
+        <div className="slider-status">
+          <div className="status-dot"></div>
+          SCANNING
         </div>
       </div>
     </div>

@@ -1,7 +1,8 @@
-import { ArrowRight, Play, Eye, CheckCircle2, Star, ShieldCheck, Clock, Cpu, Zap, Activity } from 'lucide-react';
+import { ArrowRight, Play, Eye, CheckCircle2, Star, ShieldCheck, Clock, Cpu, Zap, Activity, Quote } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
+import Hero from '../components/Hero';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -16,11 +17,9 @@ const staggerContainer = {
 export default function Home() {
   return (
     <>
+      <Hero />
+      {/* Old hero section commented out
       <section className="hero" id="home">
-        <div className="hero-video-wrapper">
-          <img src="https://images.unsplash.com/photo-1600705722908-bab1e61c0b4d?auto=format&fit=crop&q=80" alt="Hero Background" className="hero-video" />
-          <div className="hero-video-overlay"></div>
-        </div>
         <div className="hero-content">
           <motion.span 
             className="hero-subtitle"
@@ -58,21 +57,62 @@ export default function Home() {
         </div>
         <div className="hero-glow"></div>
       </section>
+      */}
 
-      {/* About Section - Bento Style */}
-      <section className="about-section bento-section" id="about">
+      {/* About Section - Philosophy Hero */}
+      <section className="philosophy-hero" id="about">
+        <div className="hero-grid-overlay"></div>
+        <div className="scanning-line"></div>
         <motion.div 
-          className="section-header centered"
+          className="section-header centered full-screen-header"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          variants={fadeInUp}
+          variants={staggerContainer}
         >
           <div className="section-title-wrapper centered">
-            <span className="section-eyebrow">Our Philosophy</span>
-            <h2 className="section-title">Redefining <span className="text-gradient">Perfection</span></h2>
+            <motion.span 
+              className="section-eyebrow" 
+              style={{ color: 'var(--accent-blue)', letterSpacing: '8px' }}
+              variants={fadeInUp}
+            >
+              The Ethos
+            </motion.span>
+            <motion.h2 
+              className="section-title giant-title"
+              variants={fadeInUp}
+            >
+              Beyond the <span className="text-gradient">Showroom Standard</span>
+            </motion.h2>
+            <motion.p 
+              className="section-desc centered mt-6 max-w-3xl"
+              variants={fadeInUp}
+              style={{ fontSize: '1.2rem', opacity: 0.8 }}
+            >
+              We don't just detail; we engineer brilliance through molecular precision and uncompromising craftsmanship. Our philosophy is rooted in the pursuit of absolute perfection.
+            </motion.p>
           </div>
         </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div 
+          className="scroll-indicator"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+        >
+          <div className="mouse">
+            <div className="wheel"></div>
+          </div>
+          <div>
+            <span className="m_scroll_arrows unu"></span>
+            <span className="m_scroll_arrows doi"></span>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Bento Grid Section */}
+      <section className="about-section bento-section">
 
         <motion.div 
           className="bento-grid"
@@ -156,8 +196,8 @@ export default function Home() {
           className="slider-container"
         >
           <BeforeAfterSlider 
-            beforeImage="https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&q=80" 
-            afterImage="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80"
+            beforeImage="/images/bmw-before.png" 
+            afterImage="/images/bmw-after.png"
           />
         </motion.div>
       </section>
@@ -436,41 +476,53 @@ export default function Home() {
       {/* Testimonials Section */}
       <section className="testimonials-section">
         <motion.div 
-          className="section-header"
+          className="section-header centered"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
         >
-          <div className="section-title-wrapper">
+          <div className="section-title-wrapper centered">
             <span className="section-eyebrow">Reviews</span>
             <h2 className="section-title">Client Feedback</h2>
           </div>
         </motion.div>
-        <motion.div 
-          className="testimonials-grid"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-        >
-          {[
-            { name: "Rahul S.", car: "BMW M3", review: "Absolutely phenomenal work. The ceramic coating made my car look better than when it rolled off the showroom floor." },
-            { name: "Arun K.", car: "Porsche 911", review: "The attention to detail here is unmatched. They managed to remove swirls I thought were permanent. Highly recommend." },
-            { name: "Sneha M.", car: "Audi Q5", review: "Professional, timely, and the results speak for themselves. The interior detailing made it feel like a brand new car again." }
-          ].map((testimonial, idx) => (
-            <motion.div className="testimonial-card" variants={fadeInUp} key={idx}>
-              <div className="stars">
-                {[1,2,3,4,5].map(star => <Star key={star} size={16} fill="var(--accent-blue)" color="var(--accent-blue)" />)}
-              </div>
-              <p className="review-text">"{testimonial.review}"</p>
-              <div className="client-info">
-                <h4 style={{ color: 'var(--text-primary)' }}>{testimonial.name}</h4>
-                <span>{testimonial.car}</span>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+        
+        <div className="testimonials-container-outer">
+          <motion.div 
+            className="testimonials-grid-new"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            {[
+              { name: "Rahul S.", car: "BMW M3", review: "Absolutely phenomenal work. The ceramic coating made my car look better than when it rolled off the showroom floor." },
+              { name: "Arun K.", car: "Porsche 911", review: "The attention to detail here is unmatched. They managed to remove swirls I thought were permanent. Highly recommend." },
+              { name: "Sneha M.", car: "Audi Q5", review: "Professional, timely, and the results speak for themselves. The interior detailing made it feel like a brand new car again." }
+            ].map((testimonial, idx) => (
+              <motion.div className="testimonial-card-premium" variants={fadeInUp} key={idx}>
+                <div className="testimonial-quote-icon">
+                  <Quote size={40} fill="var(--accent-blue)" fillOpacity={0.1} />
+                </div>
+                <div className="stars">
+                  {[1,2,3,4,5].map(star => <Star key={star} size={14} fill="var(--accent-blue)" color="var(--accent-blue)" />)}
+                </div>
+                <p className="review-text">"{testimonial.review}"</p>
+                <div className="client-meta">
+                  <div className="client-avatar">
+                    {testimonial.name.charAt(0)}
+                  </div>
+                  <div className="client-info">
+                    <h4>{testimonial.name}</h4>
+                    <span>{testimonial.car}</span>
+                  </div>
+                </div>
+                <div className="card-shine"></div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </section>
 
       {/* CTA Section */}
@@ -638,6 +690,40 @@ export default function Home() {
           .nano-card {
             padding: 30px;
           }
+        }
+
+        .scanning-line {
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            to right,
+            transparent,
+            rgba(59, 130, 246, 0.03),
+            rgba(59, 130, 246, 0.07),
+            rgba(59, 130, 246, 0.03),
+            transparent
+          );
+          transform: skewX(-20deg);
+          animation: scan 10s infinite linear;
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        @keyframes scan {
+          0% { transform: translateX(-100%) skewX(-20deg); }
+          100% { transform: translateX(200%) skewX(-20deg); }
+        }
+
+        .philosophy-hero {
+          position: relative;
+          background: radial-gradient(circle at center, var(--bg-secondary) 0%, var(--bg-color) 100%);
+        }
+
+        .philosophy-hero .giant-title {
+          text-shadow: 0 0 30px var(--accent-glow);
         }
       `}</style>
     </>

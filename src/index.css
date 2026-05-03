@@ -20,6 +20,9 @@
   --btn-glass-hover: rgba(255, 255, 255, 0.08);
   --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   --btn-shadow: 0 10px 20px -10px var(--accent-glow);
+  --hero-bg: rgba(255, 255, 255, 0.02);
+  --hero-overlay: linear-gradient(to right, rgba(0, 0, 0, 0.85), transparent);
+  --hero-overlay-mobile: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
 }
 
 body.light-theme {
@@ -38,6 +41,14 @@ body.light-theme {
   --nav-bg: rgba(255, 255, 255, 0.8);
   --btn-glass-hover: #f1f5f9;
   --overlay-dark: rgba(255, 255, 255, 0.8);
+  --hero-bg: rgba(255, 255, 255, 0.8);
+  --hero-overlay: linear-gradient(to right, rgba(255, 255, 255, 0.95), transparent);
+  --hero-overlay-mobile: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), transparent);
+  --marquee-bg: linear-gradient(90deg, #f8fafc, #ffffff, #f8fafc);
+  --marquee-mask: linear-gradient(to right, #f8fafc 0%, transparent 100%);
+  --marquee-mask-rev: linear-gradient(to left, #f8fafc 0%, transparent 100%);
+  --bento-highlight: linear-gradient(135deg, #ffffff, rgba(59, 130, 246, 0.05));
+  --bento-overlay: linear-gradient(to top, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
 }
 
 * {
@@ -48,7 +59,7 @@ body.light-theme {
 
 body {
   font-family: var(--base-font);
-  background-color: var(--bg-color);
+  background-color: transparent;
   color: var(--text-primary);
   line-height: 1.6;
   font-size: 1rem;
@@ -56,9 +67,21 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.app {
+  background-color: var(--bg-color);
+  min-height: 100vh;
+}
+
+.app:has(.hero-canvas) {
+  background-color: var(--bg-color);
+}
+
 @media (max-width: 768px) {
   body {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+  }
+  section {
+    padding: 40px 5% !important;
   }
 }
 
@@ -149,6 +172,11 @@ section {
   padding: 100px 5%;
   position: relative;
   z-index: 1;
+  background: transparent;
+}
+
+.app:not(:has(.hero-canvas)) section {
+  background: var(--bg-color);
 }
 
 @media (max-width: 768px) {
@@ -181,10 +209,38 @@ section {
 }
 
 .section-title {
-  font-size: clamp(2rem, 6vw, 3rem);
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -1px;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.6rem;
+  }
+  .section-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+  }
+  .section-header {
+    margin-bottom: 40px;
+  }
+}
+
+.giant-title {
+  font-size: clamp(3.5rem, 12vw, 8rem);
+  font-weight: 900;
+  letter-spacing: -4px;
+  line-height: 0.9;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .giant-title {
+    font-size: 2.8rem;
+    letter-spacing: -2px;
+  }
 }
 
 .section-title.small {
@@ -201,8 +257,15 @@ section {
 .centered {
   text-align: center;
   align-items: center;
+  justify-content: center;
   margin-left: auto;
   margin-right: auto;
+}
+
+.section-header.centered {
+  flex-direction: column;
+  text-align: center;
+  gap: 20px;
 }
 
 /* Shared Page Hero Styles */
@@ -255,7 +318,7 @@ section {
   position: absolute;
   bottom: 25px;
   right: 25px;
-  background: rgba(10, 10, 15, 0.9);
+  background: var(--bg-card);
   backdrop-filter: blur(15px);
   padding: 20px;
   border-radius: 20px;
@@ -438,7 +501,24 @@ section {
   .values-cards { grid-template-columns: 1fr; }
   .certs-row { flex-direction: column; }
   .badge-inner { flex-direction: column; text-align: center; }
-  .experience-orb, .experience-badge-modern { position: relative; right: auto; bottom: auto; margin-top: 20px; }
+  .experience-orb, .experience-badge-modern { 
+    position: absolute; 
+    right: 20px; 
+    bottom: 20px; 
+    padding: 15px;
+    border-radius: 15px;
+  }
+  .bottom-left .experience-badge-modern {
+    left: 20px;
+    right: auto;
+    bottom: 20px;
+  }
+  .experience-badge-modern .years {
+    font-size: 2.5rem;
+  }
+  .experience-badge-modern .text {
+    font-size: 0.8rem;
+  }
   .stats-row { flex-direction: column; }
 }
 
@@ -464,7 +544,7 @@ section {
 .nav-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 5%;
+  padding: 0 6%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -490,14 +570,15 @@ section {
 .logo-text {
   display: flex;
   flex-direction: column;
-  line-height: 1.1;
+  line-height: 1;
 }
 
 .logo-accent {
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 900;
   color: var(--text-primary);
   letter-spacing: -0.5px;
+  margin-bottom: 2px;
 }
 
 .logo-sub {
@@ -574,6 +655,129 @@ section {
 
 .menu-toggle {
   display: none;
+}
+
+/* Bento Mobile Fixes */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 1.8rem !important;
+    letter-spacing: -1px !important;
+  }
+  .hero-subtitle {
+    font-size: 0.7rem !important;
+    margin-bottom: 10px !important;
+    letter-spacing: 3px !important;
+  }
+  .hero-content-side {
+    padding: 25px !important;
+  }
+  .hero-content-stage {
+    left: 0 !important;
+    right: 0 !important;
+    text-align: center !important;
+    padding: 0 25px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .hero-content-stage p {
+    font-size: 0.9rem !important;
+    margin-top: 15px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 90% !important;
+  }
+  .bento-grid {
+    grid-template-columns: 1fr !important;
+    gap: 15px !important;
+  }
+  .bento-item {
+    padding: 20px !important;
+    min-height: auto !important;
+  }
+  .bento-visual {
+    height: 250px !important;
+  }
+  .bento-content h3 {
+    font-size: 1.2rem !important;
+  }
+  .bento-content p {
+    font-size: 0.85rem !important;
+  }
+  .bento-stat-box .stat-num {
+    font-size: 1.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar .nav-links, .navbar .menu-toggle {
+    display: none !important;
+  }
+  .navbar {
+    padding: 15px 0 !important;
+  }
+  .logo-img {
+    width: 32px;
+    height: 32px;
+  }
+  .logo-accent {
+    font-size: 0.9rem;
+  }
+  .logo-sub {
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+  }
+}
+
+/* Bottom Nav */
+.mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 65px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-medium);
+  border-radius: 25px;
+  z-index: 2500;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.65rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.bottom-nav-item.active {
+  color: var(--accent-blue);
+}
+
+.bottom-nav-item svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 768px) {
+  .mobile-bottom-nav {
+    display: flex;
+  }
+  .footer {
+    padding-bottom: 100px !important;
+  }
 }
 
 @media (max-width: 900px) {
@@ -744,6 +948,88 @@ section {
   overflow: hidden;
 }
 
+.philosophy-hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #000;
+  overflow: hidden;
+}
+
+.full-screen-header {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.hero-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(var(--border-light) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-light) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.2;
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.mouse {
+  width: 26px;
+  height: 42px;
+  border: 2px solid var(--text-secondary);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+  opacity: 0.7;
+}
+
+.wheel {
+  width: 3px;
+  height: 8px;
+  background-color: var(--accent-blue);
+  border-radius: 2px;
+  animation: scrollWheel 2s infinite;
+}
+
+@keyframes scrollWheel {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(15px); opacity: 0; }
+}
+
+.m_scroll_arrows {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--text-secondary);
+  border-bottom: 2px solid var(--text-secondary);
+  transform: rotate(45deg);
+  margin: -5px;
+  animation: mouse-scroll 2s infinite;
+  opacity: 0.5;
+}
+
+.unu { animation-delay: 0.1s; }
+.doi { animation-delay: 0.2s; }
+
+@keyframes mouse-scroll {
+  0% { opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { opacity: 0; }
+}
+
 .about-container {
   display: flex;
   align-items: center;
@@ -875,7 +1161,7 @@ section {
 .bento-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 240px;
+  grid-auto-rows: minmax(280px, auto);
   gap: 24px;
   max-width: 1200px;
   margin: 0 auto;
@@ -887,15 +1173,30 @@ section {
   border-radius: 30px;
   position: relative;
   overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+}
+
+.bento-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: 1;
+}
+
+.bento-item:hover::before {
+  opacity: 1;
 }
 
 .bento-item:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px) scale(1.02);
   border-color: var(--accent-blue);
-  box-shadow: var(--card-shadow);
+  box-shadow: 0 30px 60px -15px rgba(0,0,0,0.3);
 }
 
 .bento-visual {
@@ -917,7 +1218,7 @@ section {
 .bento-overlay {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+  background: var(--bento-overlay, linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%));
 }
 
 .bento-content {
@@ -927,8 +1228,16 @@ section {
 
 .bottom-left {
   position: absolute;
-  bottom: 40px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px;
+}
+
+.bottom-left .experience-badge-modern {
+  right: auto;
   left: 40px;
+  bottom: 40px;
 }
 
 .experience-badge-modern {
@@ -951,7 +1260,7 @@ section {
 .experience-badge-modern .text {
   font-size: 1.1rem;
   font-weight: 600;
-  color: rgba(255,255,255,0.8);
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -960,8 +1269,11 @@ section {
   grid-column: 3 / 4;
   grid-row: 1 / 2;
   padding: 40px;
-  justify-content: center;
-  background: linear-gradient(135deg, rgba(20, 20, 25, 0.8), rgba(59, 130, 246, 0.05));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: var(--bento-highlight, linear-gradient(135deg, rgba(20, 20, 25, 0.9), rgba(59, 130, 246, 0.1)));
+  border: 1px solid rgba(59, 130, 246, 0.1);
 }
 
 .bento-text-highlight h3 {
@@ -1288,13 +1600,22 @@ section {
   color: var(--text-secondary);
   transition: all 0.3s ease;
   transform: translateX(-10px);
-  opacity: 0;
 }
 
-.service-card:hover .service-arrow {
-  color: var(--accent-blue);
-  transform: translateX(0);
-  opacity: 1;
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .service-img-wrapper {
+    height: 180px;
+  }
+  .service-content {
+    padding: 20px;
+  }
+  .service-info h3 {
+    font-size: 1.4rem;
+  }
 }
 
 .service-info h3 {
@@ -1400,7 +1721,7 @@ section {
 
 /* Infinite Partners Marquee */
 .partners-marquee-section {
-  background: linear-gradient(90deg, #050507, var(--bg-card), #050507);
+  background: var(--marquee-bg, linear-gradient(90deg, #050507, var(--bg-card), #050507));
   padding: 80px 0;
   border-top: 1px solid rgba(255,255,255,0.02);
   border-bottom: 1px solid rgba(255,255,255,0.02);
@@ -1422,12 +1743,12 @@ section {
 
 .partners-marquee-section::before {
   left: 0;
-  background: linear-gradient(to right, #050507 0%, transparent 100%);
+  background: var(--marquee-mask, linear-gradient(to right, #050507 0%, transparent 100%));
 }
 
 .partners-marquee-section::after {
   right: 0;
-  background: linear-gradient(to left, #050507 0%, transparent 100%);
+  background: var(--marquee-mask-rev, linear-gradient(to left, #050507 0%, transparent 100%));
 }
 
 .partners-marquee-container {
@@ -1456,7 +1777,8 @@ section {
 .partner-logo {
   font-size: 2rem;
   font-weight: 800;
-  color: rgba(255,255,255,0.25);
+  color: var(--text-secondary);
+  opacity: 0.3;
   text-transform: uppercase;
   letter-spacing: 3px;
   transition: all 0.3s ease;
@@ -1858,51 +2180,178 @@ section {
 /* Testimonials Section */
 .testimonials-section {
   background-color: var(--bg-secondary);
+  padding: 120px 5%;
+  overflow: hidden;
 }
 
-.testimonials-grid {
+.testimonials-container-outer {
+  max-width: 1400px;
+  margin: 60px auto 0;
+}
+
+.testimonials-grid-new {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
 
-.testimonial-card {
+.testimonial-card-premium {
   background: var(--bg-card);
   border: 1px solid var(--border-light);
-  border-radius: 20px;
+  border-radius: 30px;
   padding: 40px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  transition: transform var(--transition-speed) ease;
+  gap: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
 }
 
-.testimonial-card:hover {
-  transform: translateY(-5px);
+.testimonial-card-premium:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent-blue);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.1);
 }
 
-.stars {
+.testimonial-quote-icon {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  color: var(--accent-blue);
+  opacity: 0.2;
+}
+
+.testimonial-card-premium .stars {
   display: flex;
-  gap: 5px;
+  gap: 4px;
 }
 
-.review-text {
-  font-size: 1.1rem;
-  font-style: italic;
-  color: var(--text-primary);
+.testimonial-card-premium .review-text {
+  font-size: 1.15rem;
   line-height: 1.7;
+  color: var(--text-primary);
+  font-weight: 500;
   flex-grow: 1;
 }
 
-.client-info h4 {
+.client-meta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.client-avatar {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
   font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 5px;
+  color: white;
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+}
+
+.client-info h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+  color: var(--text-primary);
 }
 
 .client-info span {
+  font-size: 0.85rem;
   color: var(--accent-blue);
-  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.03),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: 0.75s;
+}
+
+.testimonial-card-premium:hover .card-shine {
+  left: 200%;
+}
+
+@media (max-width: 1024px) {
+  .testimonials-grid-new {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials-section {
+    padding: 80px 0 80px 5%; /* Padding left for horizontal scroll start */
+  }
+  
+  .testimonials-container-outer {
+    overflow-x: auto;
+    padding-right: 5%; /* Padding right to match */
+    padding-bottom: 40px;
+    margin-bottom: -20px;
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar IE/Edge */
+    scroll-snap-type: x mandatory;
+  }
+  
+  .testimonials-container-outer::-webkit-scrollbar {
+    display: none; /* Hide scrollbar Chrome/Safari */
+  }
+
+  .testimonials-grid-new {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    width: max-content;
+  }
+
+  .testimonial-card-premium {
+    width: 85vw;
+    min-width: 300px;
+    scroll-snap-align: center;
+    padding: 40px 30px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .testimonial-card-premium .stars {
+    justify-content: center;
+  }
+
+  .testimonial-card-premium .review-text {
+    font-size: 1.05rem;
+  }
+
+  .testimonial-quote-icon {
+    top: -15px;
+    right: 50%;
+    transform: translateX(50%);
+    opacity: 0.1;
+  }
+
+  .client-meta {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 /* CTA Section */
@@ -1955,12 +2404,32 @@ section {
   gap: 20px;
 }
 
+@media (max-width: 768px) {
+  .cta-container {
+    padding: 50px 20px;
+    border-radius: 20px;
+  }
+  .cta-content h2 {
+    font-size: 1.8rem;
+  }
+  .cta-content p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+  .cta-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .cta-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 /* Bento Enhancements */
 .bento-status-badge {
-  position: absolute;
-  top: 25px;
-  right: 25px;
-  display: flex;
+  position: relative;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   background: rgba(16, 185, 129, 0.1);
@@ -1968,6 +2437,8 @@ section {
   border-radius: 100px;
   border: 1px solid rgba(16, 185, 129, 0.2);
   z-index: 5;
+  margin-bottom: 15px;
+  width: fit-content;
 }
 
 .bento-status-badge span {
@@ -2122,11 +2593,41 @@ section {
   pointer-events: none;
 }
 
+@media (max-width: 768px) {
+  .newsletter-banner {
+    padding: 40px 25px;
+    border-radius: 30px;
+    gap: 30px;
+  }
+  .newsletter-content h2 {
+    font-size: 1.8rem;
+  }
+  .newsletter-form {
+    flex-direction: column;
+    width: 100%;
+  }
+  .newsletter-form input {
+    width: 100%;
+  }
+  .newsletter-form .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 .footer-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 60px;
   margin-bottom: 60px;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
 }
 
 .footer-col h4 {

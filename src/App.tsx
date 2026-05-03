@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, MapPin, Phone, Mail, Sun, Moon } from 'lucide-react';
+import { Menu, X, MapPin, Phone, Mail, Sun, Moon, Home as HomeIcon, Grid, Image, Info } from 'lucide-react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Home from './pages/Home';
 import ServiceDetail from './pages/ServiceDetail';
 import Services from './pages/Services';
@@ -44,6 +47,39 @@ function AppContent() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1.2,
+      touchMultiplier: 2,
+      infinite: false,
+      lerp: 0.1,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      lenis.destroy();
+    };
   }, []);
 
   // Close mobile menu on route change
@@ -176,6 +212,29 @@ function AppContent() {
           </div>
         </div>
       </footer>
+      {/* Mobile Bottom Navigation */}
+      <div className="mobile-bottom-nav">
+        <Link to="/" className={`bottom-nav-item ${location.pathname === '/' ? 'active' : ''}`}>
+          <HomeIcon size={20} />
+          <span>Home</span>
+        </Link>
+        <Link to="/services" className={`bottom-nav-item ${location.pathname === '/services' ? 'active' : ''}`}>
+          <Grid size={20} />
+          <span>Services</span>
+        </Link>
+        <Link to="/gallery" className={`bottom-nav-item ${location.pathname === '/gallery' ? 'active' : ''}`}>
+          <Image size={20} />
+          <span>Gallery</span>
+        </Link>
+        <Link to="/about" className={`bottom-nav-item ${location.pathname === '/about' ? 'active' : ''}`}>
+          <Info size={20} />
+          <span>About</span>
+        </Link>
+        <Link to="/contact" className={`bottom-nav-item ${location.pathname === '/contact' ? 'active' : ''}`}>
+          <Phone size={20} />
+          <span>Contact</span>
+        </Link>
+      </div>
     </div>
   );
 }
