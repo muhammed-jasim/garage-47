@@ -81,13 +81,14 @@ export default function Home() {
             <motion.h2 
               className="section-title giant-title"
               variants={fadeInUp}
+              style={{ fontSize: 'clamp(2rem, 6vw, 4rem)' }}
             >
               Beyond the <span className="text-gradient">Showroom Standard</span>
             </motion.h2>
             <motion.p 
               className="section-desc centered mt-6 max-w-3xl"
               variants={fadeInUp}
-              style={{ fontSize: '1.2rem', opacity: 0.8 }}
+              style={{ fontSize: '1.1rem', opacity: 0.8 }}
             >
               We don't just detail; we engineer brilliance through molecular precision and uncompromising craftsmanship. Our philosophy is rooted in the pursuit of absolute perfection.
             </motion.p>
@@ -122,8 +123,13 @@ export default function Home() {
           variants={staggerContainer}
         >
           {/* Main Visual - Large left box */}
-          <motion.div className="bento-item bento-visual" variants={fadeInUp}>
-            <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&q=80" alt="Detailing" className="bento-bg" />
+          <motion.div 
+            className="bento-item bento-visual" 
+            variants={fadeInUp}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+          >
+            <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80" alt="Detailing" className="bento-bg" />
             <div className="bento-overlay"></div>
             <div className="bento-content bottom-left">
               <div className="experience-badge-modern">
@@ -131,6 +137,7 @@ export default function Home() {
                 <span className="text">Years of<br/>Mastery</span>
               </div>
             </div>
+            <div className="bento-glow-subtle"></div>
           </motion.div>
 
           {/* Intro Text - Top right */}
@@ -237,6 +244,8 @@ export default function Home() {
                 rel="noreferrer"
                 className="reel-card" 
                 variants={fadeInUp} 
+                whileHover={{ y: -15, scale: 1.02 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
                 key={idx}
              >
                 <img src={reel.img} alt={`Reel ${idx}`} className="reel-img" />
@@ -250,9 +259,10 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="reel-bottom">
-                    <p>Watch on Instagram</p>
+                    <p>Watch Protocol</p>
                   </div>
                 </div>
+                <div className="reel-glow"></div>
              </motion.a>
           ))}
         </motion.div>
@@ -282,11 +292,16 @@ export default function Home() {
         >
           {[
             { id: '01', title: 'Interior Detailing', img: 'https://images.unsplash.com/photo-1600705722908-bab1e61c0b4d?auto=format&fit=crop&q=80', desc: 'Deep cleaning and restoration of all interior materials and surfaces.' },
-            { id: '02', title: 'Polishing', img: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&q=80', desc: 'Multi-stage paint correction to remove scratches and swirl marks.' },
-            { id: '03', title: 'Car Wash', img: 'https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&q=80', desc: 'Premium hand wash with pH-neutral soaps and microfiber drying.' },
+            { id: '02', title: 'Polishing', img: 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80', desc: 'Multi-stage paint correction to remove scratches and swirl marks.' },
+            { id: '03', title: 'Car Wash', img: 'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80', desc: 'Premium hand wash with pH-neutral soaps and microfiber drying.' },
             { id: '04', title: 'Ceramic Coating', img: 'https://images.unsplash.com/photo-1632823462996-05cdabac5516?auto=format&fit=crop&q=80', desc: 'Long-lasting nano-ceramic protection for paint, glass, and wheels.' }
           ].map((srv, idx) => (
-            <motion.div variants={fadeInUp} key={idx} className="service-card-wrapper">
+            <motion.div 
+              variants={fadeInUp} 
+              key={idx} 
+              className="service-card-wrapper"
+              whileHover={{ y: -10 }}
+            >
               <Link to={`/service/${idx + 1}`} className="service-card">
                 <div className="service-img-wrapper">
                   <img src={srv.img} alt={srv.title} className="service-img" />
@@ -302,6 +317,7 @@ export default function Home() {
                     <p>{srv.desc}</p>
                   </div>
                 </div>
+                <div className="card-shine-effect"></div>
               </Link>
             </motion.div>
           ))}
@@ -349,10 +365,10 @@ export default function Home() {
           variants={staggerContainer}
         >
           {[
+            'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80',
+            'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80',
             'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&q=80',
-            'https://images.unsplash.com/photo-1620601438965-ea9e79822aef?auto=format&fit=crop&q=80',
-            'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80',
-            'https://images.unsplash.com/photo-1503376712341-ea43100ca416?auto=format&fit=crop&q=80'
+            'https://images.unsplash.com/photo-1621359953476-b16299a78001?auto=format&fit=crop&q=80'
           ].map((img, i) => (
             <motion.div className="portfolio-item" variants={fadeInUp} key={i}>
               <img src={img} alt={`Work ${i+1}`} />

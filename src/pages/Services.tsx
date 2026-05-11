@@ -54,16 +54,16 @@ const serviceCategories = [
 
 export default function Services() {
   return (
-    <div className="services-page" style={{ paddingTop: '100px', backgroundColor: 'var(--bg-color)', minHeight: '100vh' }}>
+    <div className="services-page" style={{ backgroundColor: 'var(--bg-color)', minHeight: '100vh' }}>
       
       {/* Page Hero */}
-      <section className="page-hero" style={{ padding: '80px 5%', textAlign: 'center', background: 'radial-gradient(circle at 50% 100%, rgba(59, 130, 246, 0.1) 0%, transparent 60%)' }}>
+      <section className="page-hero services-hero">
         <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
           <span className="section-eyebrow">Our Services</span>
-          <h1 style={{ fontSize: '4rem', fontWeight: 800, margin: '20px 0', letterSpacing: '-1px' }}>
+          <h1 className="page-title">
             Comprehensive <span className="text-gradient">Automotive Care</span>
           </h1>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '700px', margin: '0 auto' }}>
+          <p className="page-subtitle">
             From routine luxury maintenance to concourse-level restoration, Garage 47 Calicut offers tailored packages to meet your vehicle's exact needs.
           </p>
         </motion.div>
@@ -82,26 +82,17 @@ export default function Services() {
               variants={staggerContainer}
               style={{ marginBottom: '80px' }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '40px', paddingBottom: '20px', borderBottom: '1px solid var(--border-medium)' }}>
+              <div className="category-header">
                 {category.icon}
-                <h2 style={{ fontSize: '2.5rem', fontWeight: 700 }}>{category.title}</h2>
+                <h2 className="category-title">{category.title}</h2>
               </div>
               
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '30px' }}>
+              <div className="services-grid">
                 {category.services.map((service, sIdx) => (
                   <motion.div 
                     key={sIdx} 
                     variants={fadeInUp} 
                     className="detailed-service-card"
-                    style={{ 
-                      background: 'var(--bg-card)', 
-                      border: '1px solid var(--border-light)', 
-                      borderRadius: '24px', 
-                      padding: '35px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      transition: 'all 0.3s ease'
-                    }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.borderColor = 'var(--accent-blue)';
                       e.currentTarget.style.transform = 'translateY(-5px)';
@@ -113,20 +104,20 @@ export default function Services() {
                       e.currentTarget.style.boxShadow = 'none';
                     }}
                   >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px' }}>
-                      <h3 style={{ fontSize: '1.5rem', fontWeight: 600 }}>{service.title}</h3>
-                      <span style={{ background: 'rgba(59, 130, 246, 0.1)', color: 'var(--accent-blue)', padding: '6px 12px', borderRadius: '100px', fontSize: '0.9rem', fontWeight: 600 }}>
+                    <div className="service-card-header">
+                      <h3 className="service-card-title">{service.title}</h3>
+                      <span className="service-price-tag">
                         {service.price}
                       </span>
                     </div>
-                    <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '25px', flexGrow: 1 }}>
+                    <p className="service-desc">
                       {service.desc}
                     </p>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid var(--border-light)' }}>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                    <div className="service-footer">
+                      <span className="service-meta">
                         <Sun size={16} /> Est. Time: {service.time}
                       </span>
-                      <Link to={`/service/${service.id}`} style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-primary)', fontWeight: 600, fontSize: '0.95rem' }}>
+                      <Link to={`/service/${service.id}`} className="service-link">
                         View Details <ArrowRight size={16} color="var(--accent-blue)" />
                       </Link>
                     </div>
@@ -141,12 +132,12 @@ export default function Services() {
       {/* FAQ Section */}
       <section className="faq-section" style={{ padding: '0 5% 100px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+          <div className="faq-header">
             <span className="section-eyebrow">Queries</span>
-            <h2 style={{ fontSize: '2.5rem', fontWeight: 800 }}>Service FAQs</h2>
+            <h2 className="faq-title">Service FAQs</h2>
           </div>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <div className="faq-grid">
             {[
               { q: "How long does a ceramic coating actually last?", a: "With proper maintenance and regular pH-neutral washing, our 9H+ graphene ceramic coatings can last anywhere from 3 to 5 years. We provide a complimentary maintenance guide with every coating service." },
               { q: "Do I need paint correction before ceramic coating?", a: "Yes, we highly recommend at least a Stage 1 paint correction. Ceramic coating locks in the condition of the paint beneath it. Removing swirls and defects first ensures a flawless, deep mirror finish." },
@@ -158,15 +149,10 @@ export default function Services() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                style={{
-                  background: 'var(--bg-glass)',
-                  border: '1px solid var(--border-light)',
-                  borderRadius: '20px',
-                  padding: '30px'
-                }}
+                className="faq-item"
               >
-                <h4 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '10px', color: 'var(--text-primary)' }}>{faq.q}</h4>
-                <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6' }}>{faq.a}</p>
+                <h4 className="faq-question">{faq.q}</h4>
+                <p className="faq-answer">{faq.a}</p>
               </motion.div>
             ))}
           </div>
@@ -175,18 +161,9 @@ export default function Services() {
 
       {/* CTA Section */}
       <section style={{ padding: '0 5% 120px' }}>
-        <div style={{ 
-          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1))',
-          borderRadius: '30px',
-          padding: '60px',
-          textAlign: 'center',
-          maxWidth: '1200px',
-          margin: '0 auto',
-          border: '1px solid var(--border-medium)',
-          boxShadow: 'var(--card-shadow)'
-        }}>
-          <h2 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '15px' }}>Not sure what your car needs?</h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginBottom: '30px' }}>
+        <div className="cta-box">
+          <h2 className="cta-title">Not sure what your car needs?</h2>
+          <p className="cta-desc">
             Drop by our Calicut workshop for a free visual inspection and custom consultation.
           </p>
           <button className="btn">Book Free Consultation <ArrowRight size={18} /></button>

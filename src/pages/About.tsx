@@ -27,7 +27,7 @@ export default function About() {
           variants={fadeInUp}
         >
           <span className="section-eyebrow modern-eyebrow">The Engineering Behind Perfection</span>
-          <h1 className="page-title">
+          <h1 className="page-title" style={{ fontSize: 'clamp(2.2rem, 7vw, 3.2rem)' }}>
             Beyond <span className="text-gradient">Detailing</span>
           </h1>
           <p className="page-subtitle">
@@ -48,7 +48,7 @@ export default function About() {
               variants={fadeInUp}
             >
               <div className="tech-frame">
-                <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&q=80" alt="Mastery" className="tech-img" />
+                <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80" alt="Mastery" className="tech-img" />
                 <div className="tech-overlay"></div>
                 <div className="experience-orb">
                   <span className="years">10<span className="plus">+</span></span>
@@ -217,7 +217,7 @@ export default function About() {
             <motion.div className="cert-badge-futuristic" variants={fadeInUp} initial="hidden" whileInView="visible">
               <div className="badge-inner">
                 <div className="badge-glow purple"></div>
-                <img src="https://images.unsplash.com/photo-1632823462996-05cdabac5516?auto=format&fit=crop&q=80" alt="PPF" />
+                <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80" alt="PPF" />
                 <div className="badge-content">
                   <h4>Advanced PPF Lab</h4>
                   <p>Factory-trained in precision self-healing film installation.</p>

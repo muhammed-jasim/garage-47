@@ -180,7 +180,7 @@ const Hero: React.FC = () => {
           }
           .sticky-wrapper {
             width: 95% !important;
-            height: 85vh !important;
+            height: 80vh !important;
             top: 90px !important;
           }
           .hero-grid {
@@ -193,7 +193,7 @@ const Hero: React.FC = () => {
             height: 100% !important;
           }
           .hero-title {
-            font-size: 2.8rem !important;
+            font-size: clamp(1.8rem, 6vw, 2.5rem) !important;
           }
           .hero-content-stage {
             padding: 0 20px !important;
@@ -205,15 +205,30 @@ const Hero: React.FC = () => {
         @media (max-width: 768px) {
           .hero-scroll-section {
             padding-top: 60px !important;
+            height: 400vh !important; /* Slightly shorter scroll on mobile */
+          }
+          .sticky-wrapper {
+            height: 75vh !important;
+            top: 80px !important;
+            border-radius: 30px !important;
           }
           .hero-title {
-            font-size: 2.2rem !important;
+            font-size: 1.7rem !important;
+          }
+          .hero-subtitle {
+            letter-spacing: 3px !important;
+            font-size: 0.75rem !important;
+            margin-bottom: 15px !important;
           }
           .hero-content-side {
             padding: 30px 20px !important;
           }
           .hero-content-stage {
             padding: 0 10px !important;
+          }
+          .hero-content-stage p {
+            font-size: 0.9rem !important;
+            margin-top: 15px !important;
           }
         }
       `}</style>

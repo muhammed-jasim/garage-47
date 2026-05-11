@@ -9,31 +9,31 @@ const categories = ['All', 'Ceramic Coating', 'Paint Correction', 'Interior', 'P
 const galleryItems = [
   {
     id: 1,
-    img: 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&q=80',
-    title: 'Porsche 911 GT3',
+    img: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80',
+    title: 'Lamborghini Huracán',
     category: 'Ceramic Coating',
     desc: 'Full body Graphene Ceramic Coating with 9H hardness.',
-    size: 'large' // for bento grid
+    size: 'large'
   },
   {
     id: 2,
-    img: 'https://images.unsplash.com/photo-1620601438965-ea9e79822aef?auto=format&fit=crop&q=80',
-    title: 'Mercedes-AMG GT',
+    img: 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80',
+    title: 'Porsche 911 GT3 RS',
     category: 'Paint Correction',
     desc: '3-stage paint correction bringing back the showroom mirror finish.',
     size: 'medium'
   },
   {
     id: 3,
-    img: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80',
-    title: 'BMW M4 Competition',
+    img: 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&q=80',
+    title: 'Mercedes-AMG GT',
     category: 'PPF',
     desc: 'Matte Paint Protection Film applied to entire exterior.',
     size: 'small'
   },
   {
     id: 4,
-    img: 'https://images.unsplash.com/photo-1503376712341-ea43100ca416?auto=format&fit=crop&q=80',
+    img: 'https://images.unsplash.com/photo-1621359953476-b16299a78001?auto=format&fit=crop&q=80',
     title: 'Audi RS6 Avant',
     category: 'Ceramic Coating',
     desc: 'Wheel-off detailing and caliper ceramic coating.',
@@ -41,15 +41,15 @@ const galleryItems = [
   },
   {
     id: 5,
-    img: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80',
-    title: 'Lamborghini Huracan',
+    img: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&q=80',
+    title: 'Ferrari F8 Tributo',
     category: 'Paint Correction',
     desc: 'Intense swirl mark removal and dual-layer coating.',
     size: 'medium'
   },
   {
     id: 6,
-    img: 'https://images.unsplash.com/photo-1600705722908-bab1e61c0b4d?auto=format&fit=crop&q=80',
+    img: 'https://images.unsplash.com/photo-1503376712341-ea43100ca416?auto=format&fit=crop&q=80',
     title: 'Land Rover Defender',
     category: 'Interior',
     desc: 'Deep leather conditioning and interior fabric protection.',
@@ -57,7 +57,7 @@ const galleryItems = [
   },
   {
     id: 7,
-    img: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&q=80',
+    img: 'https://images.unsplash.com/photo-1632823462996-05cdabac5516?auto=format&fit=crop&q=80',
     title: 'Aston Martin Vantage',
     category: 'Ceramic Coating',
     desc: 'Signature exterior detailing package and hydrophobic coating.',
@@ -65,15 +65,15 @@ const galleryItems = [
   },
   {
     id: 8,
-    img: 'https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&q=80',
-    title: 'Ferrari F8 Tributo',
+    img: 'https://images.unsplash.com/photo-1620601438965-ea9e79822aef?auto=format&fit=crop&q=80',
+    title: 'BMW M4 Competition',
     category: 'PPF',
     desc: 'Front-end clear bra and self-healing protective film.',
     size: 'small'
   },
   {
     id: 9,
-    img: 'https://images.unsplash.com/photo-1632823462996-05cdabac5516?auto=format&fit=crop&q=80',
+    img: 'https://images.unsplash.com/photo-1600705722908-bab1e61c0b4d?auto=format&fit=crop&q=80',
     title: 'Tesla Model S Plaid',
     category: 'Interior',
     desc: 'Vegan leather deep clean and anti-static interior treatment.',
@@ -212,22 +212,30 @@ export default function Gallery() {
             {filteredItems.map((item) => (
               <motion.div
                 layout
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.4, ease: "circOut" as const }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                whileHover={{ y: -10 }}
+                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
                 key={item.id}
                 className={`bento-gallery-item ${item.size}`}
                 onClick={() => handleImageClick(item.id)}
               >
                 <div className="item-inner">
-                  <img src={item.img} alt={item.title} className="gallery-img" />
+                  <div className="img-shimmer"></div>
+                  <img src={item.img} alt={item.title} className="gallery-img" loading="lazy" />
                   <div className="item-overlay">
                     <div className="item-content">
-                      <span className="item-category">{item.category}</span>
+                      <motion.span 
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        className="item-category"
+                      >
+                        {item.category}
+                      </motion.span>
                       <h3 className="item-title">{item.title}</h3>
                       <div className="item-action">
-                        <span className="view-text">View Details</span>
+                        <span className="view-text">View Precision Details</span>
                         <div className="icon-circle">
                           <ArrowRight size={18} />
                         </div>
@@ -235,6 +243,7 @@ export default function Gallery() {
                     </div>
                   </div>
                   <div className="item-corner-accent"></div>
+                  <div className="item-glow"></div>
                 </div>
               </motion.div>
             ))}
@@ -248,7 +257,7 @@ export default function Gallery() {
           <div className="hud-visual">
             <div className="car-wireframe">
               <img 
-                src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80" 
+                src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80" 
                 alt="Precision Detailing" 
                 className="hud-main-img"
               />
@@ -476,7 +485,7 @@ export default function Gallery() {
         .gallery-filters-modern {
           display: flex;
           justify-content: center;
-          gap: 10px;
+          gap: 12px;
           margin-bottom: 60px;
           padding: 0 5%;
           flex-wrap: wrap;
@@ -484,16 +493,17 @@ export default function Gallery() {
 
         .modern-filter-btn {
           position: relative;
-          padding: 12px 28px;
+          padding: 10px 24px;
           background: transparent;
           border: none;
           color: var(--text-secondary);
-          font-weight: 600;
-          font-size: 0.9rem;
+          font-weight: 700;
+          font-size: 0.85rem;
           cursor: pointer;
-          transition: color 0.3s ease;
+          transition: all 0.3s ease;
           text-transform: uppercase;
-          letter-spacing: 1px;
+          letter-spacing: 2px;
+          white-space: nowrap;
         }
 
         .modern-filter-btn.active {
@@ -586,10 +596,10 @@ export default function Gallery() {
         }
 
         .item-title {
-          font-size: 1.5rem;
+          font-size: 1.25rem;
           font-weight: 800;
           color: #fff;
-          margin-bottom: 15px;
+          margin-bottom: 12px;
         }
 
         .item-action {
@@ -636,6 +646,39 @@ export default function Gallery() {
         .bento-gallery-item:hover .item-corner-accent {
           border-color: var(--accent-blue);
           transform: translate(5px, -5px);
+        }
+
+        .item-glow {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at 50% 120%, var(--accent-blue) 0%, transparent 70%);
+          opacity: 0;
+          transition: opacity 0.4s ease;
+          pointer-events: none;
+        }
+
+        .bento-gallery-item:hover .item-glow {
+          opacity: 0.2;
+        }
+
+        .img-shimmer {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.05) 50%,
+            transparent 100%
+          );
+          background-size: 200% 100%;
+          animation: shimmer 3s infinite;
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
         }
 
         /* HUD Section Styles */
@@ -786,7 +829,7 @@ export default function Gallery() {
 
         .stat-val {
           display: block;
-          font-size: 1.5rem;
+          font-size: 1.2rem;
           font-weight: 800;
           line-height: 1;
           margin-bottom: 4px;
@@ -1005,30 +1048,142 @@ export default function Gallery() {
           }
         }
 
+        @media (max-width: 1200px) {
+          .bento-gallery-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+          }
+        }
+
         @media (max-width: 900px) {
+          .gallery-container-modern {
+            padding: 100px 4% 60px;
+          }
           .bento-gallery-grid {
             grid-template-columns: repeat(2, 1fr);
-            grid-auto-rows: 200px;
+            grid-auto-rows: 250px;
+            gap: 16px;
+          }
+          /* Reset spans for 2-column layout to prevent gaps */
+          .col-2, .row-2, .bento-gallery-item.large, .bento-gallery-item.medium {
+            grid-column: span 1;
+            grid-row: span 1;
           }
           .hud-container {
             grid-template-columns: 1fr;
+            gap: 40px;
           }
-          .cta-title {
-            font-size: 2.5rem;
+          .precision-img-container {
+            height: 350px;
           }
         }
 
         @media (max-width: 600px) {
+          .gallery-filters-modern {
+            justify-content: flex-start;
+            overflow-x: auto;
+            padding: 0 5% 15px;
+            margin: 0 -5% 30px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            mask-image: linear-gradient(to right, black 85%, transparent 100%);
+            -webkit-overflow-scrolling: touch;
+          }
+          .gallery-filters-modern::-webkit-scrollbar {
+            display: none;
+          }
+          .filter-btn {
+            padding: 8px 18px;
+            font-size: 0.85rem;
+          }
           .bento-gallery-grid {
             grid-template-columns: 1fr;
-            grid-auto-rows: 300px;
+            grid-auto-rows: 280px;
+            gap: 20px;
           }
-          .bento-gallery-item.large, .bento-gallery-item.medium {
+          /* Ensure the first item (often large) fits well on mobile */
+          .bento-gallery-item:first-child {
+            grid-auto-rows: 350px;
+            height: 350px;
+          }
+          .col-2, .row-2, .bento-gallery-item.large, .bento-gallery-item.medium {
             grid-column: span 1;
             grid-row: span 1;
           }
-          .cta-actions {
+          /* Default show content on mobile - No hover needed */
+          .item-overlay {
+            opacity: 1;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 40%, transparent 80%);
+          }
+          .item-action {
+            transform: translateY(0);
+          }
+          .item-category {
+            opacity: 1;
+            transform: none;
+          }
+          .view-text {
+            display: none; /* Hide extra text to keep it clean on mobile */
+          }
+          .precision-hud-section {
+            padding: 60px 5% 100px;
+          }
+          .hud-container {
+            grid-template-columns: 1fr;
+            gap: 30px;
+          }
+          .hud-visual {
+            order: -1;
+            height: 350px;
+            margin-bottom: 20px;
+            overflow: visible; /* Allow HUD points to float slightly outside if needed */
+          }
+          .hud-main-img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain; /* Ensure the full car is visible */
+            background: rgba(255,255,255,0.02);
+            border-radius: 20px;
+          }
+          .hud-point {
+            display: flex;
+            transform: scale(0.6);
+          }
+          .p1 { top: 15%; left: 10%; }
+          .p2 { top: 35%; right: 5%; }
+          .p3 { bottom: 15%; left: 25%; }
+          
+          .hud-stats-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+          }
+          .hud-stat-card {
+            padding: 20px 15px;
             flex-direction: column;
+            text-align: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.03);
+          }
+          .stat-icon {
+            width: 35px;
+            height: 35px;
+            margin-bottom: 5px;
+          }
+          .stat-val {
+            font-size: 1.1rem;
+          }
+          .stat-lbl {
+            font-size: 0.6rem;
+            letter-spacing: 0.5px;
+          }
+          .lightbox-card {
+            border-radius: 20px;
+            width: 100%;
+          }
+          .lightbox-info {
+            padding: 25px;
+            gap: 20px;
           }
         }
       `}</style>

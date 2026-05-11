@@ -22,29 +22,52 @@ const HeroCanvas: React.FC<HeroCanvasProps> = ({ scrollTriggerElement = "body" }
   useEffect(() => {
     let loadedCount = 0;
     const preloadImages = async () => {
-      const loadedImages: HTMLImageElement[] = [];
-      const promises = [];
-
-      for (let i = 0; i < frameCount; i++) {
-        const img = new Image();
-        img.src = currentFrame(i);
-        loadedImages.push(img);
-        promises.push(new Promise((resolve) => {
+      const loadedImages: HTMLImageElement[] = new Array(frameCount);
+      
+      // Load first frame immediately
+      const loadFirstFrame = () => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.src = currentFrame(0);
           img.onload = () => {
-            loadedCount++;
-            setLoadingProgress(Math.round((loadedCount / frameCount) * 100));
+            loadedImages[0] = img;
+            setImages([...loadedImages]);
+            setIsLoaded(true); // Show canvas as soon as first frame is ready
             resolve(null);
           };
-          img.onerror = () => {
-            loadedCount++;
-            resolve(null);
-          };
-        }));
-      }
+          img.onerror = resolve;
+        });
+      };
 
-      await Promise.all(promises);
-      setImages(loadedImages);
-      setIsLoaded(true);
+      await loadFirstFrame();
+
+      // Load remaining images in chunks to avoid blocking
+      const loadRemaining = async () => {
+        const batchSize = 10;
+        for (let i = 1; i < frameCount; i += batchSize) {
+          const batchPromises = [];
+          for (let j = i; j < Math.min(i + batchSize, frameCount); j++) {
+            const img = new Image();
+            img.src = currentFrame(j);
+            loadedImages[j] = img;
+            batchPromises.push(new Promise((resolve) => {
+              img.onload = () => {
+                loadedCount++;
+                setLoadingProgress(Math.round((loadedCount / frameCount) * 100));
+                resolve(null);
+              };
+              img.onerror = () => {
+                loadedCount++;
+                resolve(null);
+              };
+            }));
+          }
+          await Promise.all(batchPromises);
+          setImages([...loadedImages]); // Update images array after each batch
+        }
+      };
+
+      loadRemaining();
     };
 
     preloadImages();
@@ -91,7 +114,7 @@ const HeroCanvas: React.FC<HeroCanvasProps> = ({ scrollTriggerElement = "body" }
     const air = { frame: -1 };
 
     const handleResize = () => {
-      const dpr = window.devicePixelRatio || 1;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const parent = canvas.parentElement;
       if (!parent) return;
 
