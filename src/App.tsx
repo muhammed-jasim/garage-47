@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, MapPin, Phone, Mail, Sun, Moon, Home as HomeIcon, Grid, Image, Info } from 'lucide-react';
+import { Menu, X, MapPin, Phone, Mail, Sun, Moon } from 'lucide-react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import gsap from 'gsap';
