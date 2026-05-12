@@ -169,7 +169,7 @@ const Hero: React.FC = () => {
           </div>
           
           <div className="hero-visual-side" style={{ position: 'relative', overflow: 'hidden' }}>
-            <HeroCanvas scrollTriggerElement={containerRef.current || undefined} />
+            <HeroCanvas scrollTriggerElement=".hero-scroll-section" />
           </div>
         </div>
       </div>

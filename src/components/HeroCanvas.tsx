@@ -14,10 +14,10 @@ const HeroCanvas: React.FC<HeroCanvasProps> = ({ scrollTriggerElement = "body" }
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const stRef = useRef<any>(null);
-  const frameCount = 240;
+  const frameCount = 120; // Reduced to halve load size
   
   const currentFrame = (index: number) =>
-    `/images/hero/ezgif-frame-${(index + 1).toString().padStart(3, '0')}.png`;
+    `/images/hero/ezgif-frame-${((index * 2) + 1).toString().padStart(3, '0')}.png`;
 
   useEffect(() => {
     let loadedCount = 0;
@@ -35,7 +35,11 @@ const HeroCanvas: React.FC<HeroCanvasProps> = ({ scrollTriggerElement = "body" }
             setIsLoaded(true); // Show canvas as soon as first frame is ready
             resolve(null);
           };
-          img.onerror = resolve;
+          img.onerror = (e: any) => {
+            console.error("Failed to load first frame:", currentFrame(0), e);
+            setIsLoaded(true); // Show canvas anyway to avoid infinite blank loading state
+            resolve(null);
+          };
         });
       };
 

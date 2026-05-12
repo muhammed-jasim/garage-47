@@ -70,7 +70,21 @@ export default function Home() {
           viewport={{ once: true }}
           variants={staggerContainer}
         >
-          <div className="section-title-wrapper centered">
+          <div className="section-title-wrapper centered" style={{ position: 'relative' }}>
+            {/* Premium Volumetric Glow Behind Text */}
+            <div style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '120%',
+              height: '150%',
+              background: 'radial-gradient(ellipse at center, rgba(59, 130, 246, 0.15) 0%, transparent 60%)',
+              filter: 'blur(30px)',
+              zIndex: -1,
+              pointerEvents: 'none'
+            }}></div>
+            
             <motion.span 
               className="section-eyebrow" 
               style={{ color: 'var(--accent-blue)', letterSpacing: '8px' }}
@@ -81,7 +95,7 @@ export default function Home() {
             <motion.h2 
               className="section-title giant-title"
               variants={fadeInUp}
-              style={{ fontSize: 'clamp(2rem, 6vw, 4rem)' }}
+              style={{ fontSize: 'clamp(2rem, 6vw, 4rem)', position: 'relative' }}
             >
               Beyond the <span className="text-gradient">Showroom Standard</span>
             </motion.h2>
@@ -233,10 +247,10 @@ export default function Home() {
           variants={staggerContainer}
         >
           {[
-             { id: 'DXmIrtxEtpA', img: 'https://instagram.fccj3-1.fna.fbcdn.net/v/t51.71878-15/536824537_1487168915623384_6351388001703865797_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=105&ig_cache_key=MzcwNDE1NTM0MzUwOTE0ODA3Nw%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjY0MHgxMTM2LnNkci5DMyJ9&_nc_ohc=NaLsLeZv838Q7kNvwFZzLe-&_nc_oc=Adp_0gCDga460iRPHRl2AUtK0YM6VQWpyDY9luClpFL9CzUZoKoXKWsPzkvKfCuL1xt0vph3vASKSP4b0a-b_kKI&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fccj3-1.fna&_nc_gid=3YJCis8VYRYNPGvJ629eaw&_nc_ss=7a22e&oh=00_Af4x2uShlzzHk_JbimEp65vb3J9ShpVp64exMVaPeyaZuw&oe=69FA03CB', views: '581K' },
-             { id: 'DRCnodUEqcR', img: 'https://instagram.fccj3-1.fna.fbcdn.net/v/t51.71878-15/581322268_1826407894645261_3739224545975229376_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=103&ig_cache_key=Mzc2NTc0NjU0MjUwMzQzODA5Nw%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjY0MHgxMTM2LnNkci5DMyJ9&_nc_ohc=t9Z2lBc_Nj4Q7kNvwHt4p8g&_nc_oc=AdqLNbGVzAng5mF2x3Phip8bITNQP85ZS9aVWQqUL8AsMEuu1laSQkE1yvsa0kgkYEnbEjNLsAHPvzWI11qIMZNc&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fccj3-1.fna&_nc_gid=BkAZ4wW9fsUVadXxXP9rag&_nc_ss=7a22e&oh=00_Af7ur8H6hQxNQvYOCs9i9qeB54zA1WA89hk-CE67w2-oIA&oe=69FA002C', views: '151K' },
-             { id: 'DM27M6QJk9r', img: 'https://instagram.fccj3-1.fna.fbcdn.net/v/t51.82787-15/527470194_17987135321837637_2213961404673460765_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=109&ig_cache_key=MzY5MDM5NzMxNjYwMjU0ODA3NTE3OTg3MTM1MzE1ODM3NjM3.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjIwMzB4MzYxMC5zZHIuQzMifQ%3D%3D&_nc_ohc=S9rBa7eQjrcQ7kNvwHWqjci&_nc_oc=AdrKkPCKhOhMNdWi7gAeFlmPmS9kFhyIvIKqxi6hEubVG7A6vjM5s6v32tyrhKqKYFe1YPuJ8B2Hic_izrR8AAkZ&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fccj3-1.fna&_nc_gid=3YJCis8VYRYNPGvJ629eaw&_nc_ss=7a22e&oh=00_Af7e3JRmVVlM6wp_AiBt4N4MKqdbTMkB5kc1ke_ucdTD0w&oe=69F9F812', views: '110K' },
-             { id: 'DOFpQVdEn7L', img: 'https://instagram.fccj3-1.fna.fbcdn.net/v/t51.71878-15/541912079_792764926606939_7872708552532380799_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=100&ig_cache_key=MzcxMjU1NDkxMDI5MTc1NDY5OQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjY0MHgxMTM2LnNkci5DMyJ9&_nc_ohc=nZ_JJfMbzugQ7kNvwFmDbz-&_nc_oc=AdrQXUwGoA7h3EYMLqKyd6qDynFfL4KvmNtYmJI3CUh5VlhgyYx9vFWLyewpUNV0YjkJC_BduGxqQrXX0v7M8fdI&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fccj3-1.fna&_nc_gid=oGvqA4qk6nt-OS1M8GhVCg&_nc_ss=7a22e&oh=00_Af5dg1zA8Hs-qZhnXrVJ6QAkoPNg6EJpr1XzBu7b_7Nnvg&oe=69F9FC1B', views: '12.9K' }
+             { id: 'DXmIrtxEtpA', img: 'https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&q=80', views: '581K' },
+             { id: 'DRCnodUEqcR', img: 'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&q=80', views: '151K' },
+             { id: 'DM27M6QJk9r', img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80', views: '110K' },
+             { id: 'DOFpQVdEn7L', img: 'https://images.unsplash.com/photo-1599256621730-535171e28e50?auto=format&fit=crop&q=80', views: '12.9K' }
           ].map((reel, idx) => (
              <motion.a 
                 href={`https://www.instagram.com/reel/${reel.id}/`}
@@ -739,7 +753,7 @@ export default function Home() {
         }
 
         .philosophy-hero .giant-title {
-          text-shadow: 0 0 30px var(--accent-glow);
+          /* Removed text-shadow that caused blur over gradient text */
         }
       `}</style>
     </>
