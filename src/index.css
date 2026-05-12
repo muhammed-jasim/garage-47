@@ -237,7 +237,14 @@ section {
   letter-spacing: -2px;
 }
 
+.mobile-break {
+  display: none;
+}
+
 @media (max-width: 768px) {
+  .mobile-break {
+    display: block;
+  }
   .section-title {
     font-size: 1.6rem;
   }

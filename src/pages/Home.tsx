@@ -60,17 +60,53 @@ export default function Home() {
       */}
 
       {/* About Section - Philosophy Hero */}
-      <section className="philosophy-hero" id="about">
-        <div className="hero-grid-overlay"></div>
-        <div className="scanning-line"></div>
+      <section className="philosophy-hero" id="about" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Cinematic Background Image */}
+        <motion.div 
+          className="philosophy-bg-image"
+          initial={{ scale: 1.1, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 0.3 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          viewport={{ once: true }}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: 'url("https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&q=80")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            filter: 'grayscale(100%) contrast(1.2) brightness(0.6)',
+            zIndex: 0
+          }}
+        />
+        <div className="hero-grid-overlay" style={{ zIndex: 1, opacity: 0.5 }}></div>
+        <div className="philosophy-vignette" style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'radial-gradient(circle at center, transparent 0%, var(--bg-color) 90%)',
+          zIndex: 1
+        }}></div>
+        <div className="scanning-line" style={{ zIndex: 2 }}></div>
+        
         <motion.div 
           className="section-header centered full-screen-header"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
+          style={{ zIndex: 3, padding: '0 5%' }}
         >
-          <div className="section-title-wrapper centered" style={{ position: 'relative' }}>
+          <div className="section-title-wrapper centered" style={{ 
+            position: 'relative',
+            padding: 'clamp(30px, 5vw, 60px) clamp(20px, 5vw, 40px)',
+            background: 'rgba(0, 0, 0, 0.4)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+            border: '1px solid rgba(255, 255, 255, 0.05)',
+            borderRadius: '30px',
+            maxWidth: '1000px',
+            margin: '0 auto',
+            boxShadow: '0 30px 60px rgba(0,0,0,0.5)'
+          }}>
             {/* Premium Volumetric Glow Behind Text */}
             <div style={{
               position: 'absolute',
@@ -87,7 +123,7 @@ export default function Home() {
             
             <motion.span 
               className="section-eyebrow" 
-              style={{ color: 'var(--accent-blue)', letterSpacing: '8px' }}
+              style={{ color: 'var(--accent-blue)', letterSpacing: 'clamp(4px, 1vw, 8px)' }}
               variants={fadeInUp}
             >
               The Ethos
@@ -95,14 +131,14 @@ export default function Home() {
             <motion.h2 
               className="section-title giant-title"
               variants={fadeInUp}
-              style={{ fontSize: 'clamp(2rem, 6vw, 4rem)', position: 'relative' }}
+              style={{ fontSize: 'clamp(2rem, 6vw, 4.5rem)', position: 'relative', marginBottom: '20px' }}
             >
-              Beyond the <span className="text-gradient">Showroom Standard</span>
+              Beyond the <br className="mobile-break" /><span className="text-gradient">Showroom Standard</span>
             </motion.h2>
             <motion.p 
               className="section-desc centered mt-6 max-w-3xl"
               variants={fadeInUp}
-              style={{ fontSize: '1.1rem', opacity: 0.8 }}
+              style={{ fontSize: 'clamp(0.95rem, 2vw, 1.15rem)', opacity: 0.8, lineHeight: 1.8 }}
             >
               We don't just detail; we engineer brilliance through molecular precision and uncompromising craftsmanship. Our philosophy is rooted in the pursuit of absolute perfection.
             </motion.p>
