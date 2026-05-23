@@ -14,10 +14,13 @@ const HeroCanvas: React.FC<HeroCanvasProps> = ({ scrollTriggerElement = "body" }
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const stRef = useRef<any>(null);
-  const frameCount = 120; // Reduced to halve load size
+  const frameCount = 40; // Reduced for significantly faster load size
   
-  const currentFrame = (index: number) =>
-    `/images/hero/ezgif-frame-${((index * 2) + 1).toString().padStart(3, '0')}.png`;
+  const currentFrame = (index: number) => {
+    const frameNumber = Math.min(240, Math.max(1, Math.floor((index * 239) / (frameCount - 1)) + 1));
+    const frameString = frameNumber.toString().padStart(3, '0');
+    return `/images/hero/ezgif-frame-${frameString}.png`;
+  };
 
   useEffect(() => {
     let loadedCount = 0;

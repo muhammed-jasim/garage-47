@@ -68,7 +68,7 @@ const Hero: React.FC = () => {
     <section 
       ref={containerRef} 
       className="hero-scroll-section" 
-      style={{ height: '500vh', position: 'relative', background: 'transparent', paddingTop: '100px' }}
+      style={{ height: '300vh', position: 'relative', background: 'transparent', paddingTop: '100px' }}
     >
       <div 
         className="sticky-wrapper" 
@@ -205,7 +205,7 @@ const Hero: React.FC = () => {
         @media (max-width: 768px) {
           .hero-scroll-section {
             padding-top: 60px !important;
-            height: 400vh !important; /* Slightly shorter scroll on mobile */
+            height: 200vh !important; /* Shorter scroll on mobile */
           }
           .sticky-wrapper {
             height: 75vh !important;
