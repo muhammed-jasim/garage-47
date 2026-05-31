@@ -91,7 +91,7 @@ const HeroCanvas: React.FC<HeroCanvasProps> = ({ scrollTriggerElement = "body" }
       if (images[index]) {
         const img = images[index];
         context.imageSmoothingEnabled = true;
-        context.imageSmoothingQuality = 'high';
+        context.imageSmoothingQuality = 'low';
         
         const canvasAspect = canvas.width / canvas.height;
         const imgAspect = img.width / img.height;
@@ -142,6 +142,9 @@ const HeroCanvas: React.FC<HeroCanvasProps> = ({ scrollTriggerElement = "body" }
     render(0);
     air.frame = 0;
 
+    let renderScheduled = false;
+    let scheduledFrameIndex = -1;
+
     const st = ScrollTrigger.create({
       trigger: scrollTriggerElement,
       start: "top top",
@@ -154,8 +157,15 @@ const HeroCanvas: React.FC<HeroCanvasProps> = ({ scrollTriggerElement = "body" }
         );
         
         if (air.frame !== frameIndex) {
-          air.frame = frameIndex;
-          requestAnimationFrame(() => render(frameIndex));
+          scheduledFrameIndex = frameIndex;
+          if (!renderScheduled) {
+            renderScheduled = true;
+            requestAnimationFrame(() => {
+              render(scheduledFrameIndex);
+              air.frame = scheduledFrameIndex;
+              renderScheduled = false;
+            });
+          }
         }
       }
     });

@@ -98,14 +98,14 @@ export default function Home() {
           <div className="section-title-wrapper centered" style={{ 
             position: 'relative',
             padding: 'clamp(30px, 5vw, 60px) clamp(20px, 5vw, 40px)',
-            background: 'rgba(0, 0, 0, 0.4)',
+            background: 'var(--bg-card)',
             backdropFilter: 'blur(12px)',
             WebkitBackdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.05)',
+            border: '1px solid var(--border-light)',
             borderRadius: '30px',
             maxWidth: '1000px',
             margin: '0 auto',
-            boxShadow: '0 30px 60px rgba(0,0,0,0.5)'
+            boxShadow: 'var(--card-shadow)'
           }}>
             {/* Premium Volumetric Glow Behind Text */}
             <div style={{
@@ -341,10 +341,10 @@ export default function Home() {
           variants={staggerContainer}
         >
           {[
-            { id: '01', title: 'Interior Detailing', img: 'https://images.unsplash.com/photo-1600705722908-bab1e61c0b4d?auto=format&fit=crop&q=80', desc: 'Deep cleaning and restoration of all interior materials and surfaces.' },
-            { id: '02', title: 'Polishing', img: 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80', desc: 'Multi-stage paint correction to remove scratches and swirl marks.' },
-            { id: '03', title: 'Car Wash', img: 'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80', desc: 'Premium hand wash with pH-neutral soaps and microfiber drying.' },
-            { id: '04', title: 'Ceramic Coating', img: 'https://images.unsplash.com/photo-1632823462996-05cdabac5516?auto=format&fit=crop&q=80', desc: 'Long-lasting nano-ceramic protection for paint, glass, and wheels.' }
+            { id: '01', title: 'Interior Detailing', img: '/images/services/interior.png', desc: 'Deep cleaning and restoration of all interior materials and surfaces.' },
+            { id: '02', title: 'Polishing', img: '/images/services/polishing.png', desc: 'Multi-stage paint correction to remove scratches and swirl marks.' },
+            { id: '03', title: 'Car Wash', img: '/images/services/wash.png', desc: 'Premium hand wash with pH-neutral soaps and microfiber drying.' },
+            { id: '04', title: 'Ceramic Coating', img: '/images/services/coating.png', desc: 'Long-lasting nano-ceramic protection for paint, glass, and wheels.' }
           ].map((srv, idx) => (
             <motion.div 
               variants={fadeInUp} 
@@ -415,10 +415,10 @@ export default function Home() {
           variants={staggerContainer}
         >
           {[
-            'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80',
-            'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80',
-            'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&q=80',
-            'https://images.unsplash.com/photo-1621359953476-b16299a78001?auto=format&fit=crop&q=80'
+            '/images/gallery/lambo.png',
+            '/images/gallery/porsche.png',
+            '/images/gallery/mercedes.png',
+            '/images/gallery/audi.png'
           ].map((img, i) => (
             <motion.div className="portfolio-item" variants={fadeInUp} key={i}>
               <img src={img} alt={`Work ${i+1}`} />

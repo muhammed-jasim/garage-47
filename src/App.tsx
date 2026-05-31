@@ -32,7 +32,8 @@ function AppContent() {
   const isHomePage = location.pathname === '/';
   const isGalleryPage = location.pathname === '/gallery';
   const isServicesPage = location.pathname === '/services';
-  const hideNewsletter = isContactPage || isHomePage || isGalleryPage || isServicesPage;
+  const isServiceDetailPage = location.pathname.startsWith('/service');
+  const hideNewsletter = isContactPage || isHomePage || isGalleryPage || isServicesPage || isServiceDetailPage;
 
   useEffect(() => {
     if (isLightMode) {
@@ -63,22 +64,17 @@ function AppContent() {
       lerp: 0.1,
     });
 
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
     lenis.on('scroll', ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
+    const updateLenis = (time: number) => {
       lenis.raf(time * 1000);
-    });
+    };
 
+    gsap.ticker.add(updateLenis);
     gsap.ticker.lagSmoothing(0);
 
     return () => {
+      gsap.ticker.remove(updateLenis);
       lenis.destroy();
     };
   }, []);

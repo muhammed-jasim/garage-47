@@ -9,7 +9,7 @@ const categories = ['All', 'Ceramic Coating', 'Paint Correction', 'Interior', 'P
 const galleryItems = [
   {
     id: 1,
-    img: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80',
+    img: '/images/gallery/lambo.png',
     title: 'Lamborghini Huracán',
     category: 'Ceramic Coating',
     desc: 'Full body Graphene Ceramic Coating with 9H hardness.',
@@ -17,7 +17,7 @@ const galleryItems = [
   },
   {
     id: 2,
-    img: 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80',
+    img: '/images/gallery/porsche.png',
     title: 'Porsche 911 GT3 RS',
     category: 'Paint Correction',
     desc: '3-stage paint correction bringing back the showroom mirror finish.',
@@ -25,7 +25,7 @@ const galleryItems = [
   },
   {
     id: 3,
-    img: 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&q=80',
+    img: '/images/gallery/mercedes.png',
     title: 'Mercedes-AMG GT',
     category: 'PPF',
     desc: 'Matte Paint Protection Film applied to entire exterior.',
@@ -33,7 +33,7 @@ const galleryItems = [
   },
   {
     id: 4,
-    img: 'https://images.unsplash.com/photo-1621359953476-b16299a78001?auto=format&fit=crop&q=80',
+    img: '/images/gallery/audi.png',
     title: 'Audi RS6 Avant',
     category: 'Ceramic Coating',
     desc: 'Wheel-off detailing and caliper ceramic coating.',
@@ -41,7 +41,7 @@ const galleryItems = [
   },
   {
     id: 5,
-    img: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&q=80',
+    img: '/images/gallery/ferrari.png',
     title: 'Ferrari F8 Tributo',
     category: 'Paint Correction',
     desc: 'Intense swirl mark removal and dual-layer coating.',
@@ -49,7 +49,7 @@ const galleryItems = [
   },
   {
     id: 6,
-    img: 'https://images.unsplash.com/photo-1503376712341-ea43100ca416?auto=format&fit=crop&q=80',
+    img: '/images/gallery/defender.png',
     title: 'Land Rover Defender',
     category: 'Interior',
     desc: 'Deep leather conditioning and interior fabric protection.',
@@ -57,7 +57,7 @@ const galleryItems = [
   },
   {
     id: 7,
-    img: 'https://images.unsplash.com/photo-1632823462996-05cdabac5516?auto=format&fit=crop&q=80',
+    img: '/images/gallery/aston.png',
     title: 'Aston Martin Vantage',
     category: 'Ceramic Coating',
     desc: 'Signature exterior detailing package and hydrophobic coating.',
@@ -65,7 +65,7 @@ const galleryItems = [
   },
   {
     id: 8,
-    img: 'https://images.unsplash.com/photo-1620601438965-ea9e79822aef?auto=format&fit=crop&q=80',
+    img: '/images/gallery/bmw.png',
     title: 'BMW M4 Competition',
     category: 'PPF',
     desc: 'Front-end clear bra and self-healing protective film.',
@@ -73,7 +73,7 @@ const galleryItems = [
   },
   {
     id: 9,
-    img: 'https://images.unsplash.com/photo-1600705722908-bab1e61c0b4d?auto=format&fit=crop&q=80',
+    img: '/images/gallery/tesla.png',
     title: 'Tesla Model S Plaid',
     category: 'Interior',
     desc: 'Vegan leather deep clean and anti-static interior treatment.',
@@ -334,8 +334,8 @@ export default function Gallery() {
 
         <div className="before-after-showcase">
           <BeforeAfterSlider 
-            beforeImage="https://images.unsplash.com/photo-1507136566006-bbc50583eb21?auto=format&fit=crop&q=80" 
-            afterImage="https://images.unsplash.com/photo-1542362567-b05503f3af15?auto=format&fit=crop&q=80"
+            beforeImage="/images/bmw-before.png" 
+            afterImage="/images/bmw-after.png"
           />
           <div className="slider-instruction">
             <ArrowRight size={24} className="bounce-x" />
@@ -1184,6 +1184,56 @@ export default function Gallery() {
           .lightbox-info {
             padding: 25px;
             gap: 20px;
+          }
+          .info-title {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+          }
+          .info-desc {
+            font-size: 0.9rem;
+            line-height: 1.5;
+          }
+          
+          /* Gallery CTA mobile */
+          .gallery-cta {
+            padding: 60px 4%;
+          }
+          .cta-content-modern {
+            padding: 50px 24px;
+            border-radius: 24px;
+          }
+          .cta-title {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+          }
+          .cta-content-modern p {
+            font-size: 1rem;
+            margin-bottom: 30px;
+          }
+          .cta-actions {
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            align-items: center;
+          }
+          .cta-actions .btn {
+            width: 100%;
+            max-width: 320px;
+            justify-content: center;
+          }
+
+          /* Bento item adjustments for mobile */
+          .bento-gallery-item .item-overlay {
+            padding: 20px;
+          }
+          .bento-gallery-item .item-title {
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+          }
+          .bento-gallery-item .item-category {
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
           }
         }
       `}</style>

@@ -44,6 +44,7 @@
 
 .image-clip {
   z-index: 1;
+  will-change: clip-path;
 }
 
 .slider-line {
@@ -56,6 +57,7 @@
   pointer-events: none;
   z-index: 5;
   box-shadow: 0 0 20px var(--accent-blue);
+  will-change: left;
 }
 
 .slider-line::after {
