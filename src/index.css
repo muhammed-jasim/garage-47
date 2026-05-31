@@ -3421,3 +3421,217 @@ section {
   0% { transform: translateX(0); }
   100% { transform: translateX(100%); }
 }
+
+/* Featured Showcase Slider Showcase CSS */
+.showcase-slider-deck {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 30px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  min-height: 520px;
+  box-shadow: var(--card-shadow);
+  position: relative;
+  z-index: 10;
+}
+
+.slider-visual-column {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.slider-slide-img-box {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+  z-index: 0;
+}
+
+.slider-slide-img-box.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.slider-slide-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slider-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(5, 5, 7, 0.6) 0%, transparent 60%),
+              linear-gradient(to top, rgba(5, 5, 7, 0.5) 0%, transparent 50%);
+  z-index: 2;
+}
+
+.slider-control-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(5, 5, 7, 0.6);
+  border: 1px solid var(--border-medium);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.slider-control-btn:hover {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.slider-control-btn.prev {
+  left: 20px;
+}
+
+.slider-control-btn.next {
+  right: 20px;
+}
+
+.slider-indicator-dots {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.indicator-dot {
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator-dot.active {
+  background: var(--accent-blue);
+  transform: scale(1.2);
+  width: 24px;
+  border-radius: 100px;
+}
+
+.slider-content-column {
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  background: var(--bg-card);
+  position: relative;
+  z-index: 2;
+}
+
+.slider-content-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.slide-eyebrow-category {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--accent-blue);
+}
+
+.slide-title-header {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.slide-tagline {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  opacity: 0.95;
+  border-left: 3px solid var(--accent-purple);
+  padding-left: 10px;
+  margin: 5px 0;
+}
+
+.slide-desc-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.slide-bullet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 10px 0 20px;
+}
+
+.slide-bullet-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.slide-bullet-icon-box {
+  width: 22px;
+  height: 22px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #10b981;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.slide-cta-wrapper {
+  margin-top: 5px;
+}
+
+@media (max-width: 1024px) {
+  .showcase-slider-deck {
+    grid-template-columns: 1fr;
+  }
+  .slider-visual-column {
+    height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slider-content-column {
+    padding: 30px 24px;
+  }
+  .slider-visual-column {
+    height: 240px;
+  }
+  .slider-control-btn {
+    width: 38px;
+    height: 38px;
+  }
+  .slider-control-btn.prev {
+    left: 10px;
+  }
+  .slider-control-btn.next {
+    right: 10px;
+  }
+}

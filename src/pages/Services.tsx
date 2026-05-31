@@ -1,5 +1,6 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Droplets, Shield } from 'lucide-react';
+import { ArrowRight, Sparkles, Droplets, Shield, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const fadeInUp = {
@@ -52,7 +53,65 @@ const serviceCategories = [
   }
 ];
 
+const featuredSlides = [
+  {
+    id: '4',
+    title: "Graphene Ceramic Coating",
+    category: "Paint Protection",
+    image: "/images/services/coating.png",
+    tagline: "Atomic-Level Paint Shielding",
+    desc: "Our premium 9H+ graphene ceramic coating bonds at the molecular level, creating an ultra-hydrophobic surface that guards against oxidation, acid rain, and environmental contaminants.",
+    bullets: ["5-Year Warranted Durability", "98% Gloss Retention & Mirror Finish", "Extreme Water Beading (110° Contact Angle)"]
+  },
+  {
+    id: '4',
+    title: "Paint Protection Film (PPF)",
+    category: "Paint Protection",
+    image: "/images/services/ppf.png",
+    tagline: "Self-Healing Clear Armor",
+    desc: "The ultimate protection against rock chips, deep scratches, and road debris. Our high-gloss polycaprolactone film possesses active self-healing properties that make micro-scratches vanish under sunlight.",
+    bullets: ["Premium 8mil Thickness", "Instant Self-Healing Technology", "Zero Yellowing & Optical Clarity"]
+  },
+  {
+    id: '1',
+    title: "Deep Interior Detailing",
+    category: "Interior Restoration",
+    image: "/images/services/leather_coating.png",
+    tagline: "Cabin Rejuvenation & Protection",
+    desc: "A meticulous clean of every stitch, crease, and panel. We perform deep fiber extraction on carpets and apply premium leather ceramic coatings to resist UV fading and dye transfer.",
+    bullets: ["Anti-Static & Anti-Microbial Protection", "Premium Leather Conditioning", "Deep Fiber Hot-Water Extraction"]
+  },
+  {
+    id: '2',
+    title: "Level 2 Paint Correction",
+    category: "Paint Correction",
+    image: "/images/services/polishing.png",
+    tagline: "Concourse-Level Paint Correction",
+    desc: "Our two-stage heavy compounding and refining process safely levels the clear coat, permanently removing up to 90% of swirl marks, scratches, holograms, and oxidation.",
+    bullets: ["Removes Swirls & Holograms Permanently", "Restores True Metallic Flake & Depth", "Spectrophotometer Paint-Depth Verified"]
+  }
+];
+
 export default function Services() {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % featuredSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isPaused]);
+
+  const handlePrevSlide = () => {
+    setActiveSlide((prev) => (prev - 1 + featuredSlides.length) % featuredSlides.length);
+  };
+
+  const handleNextSlide = () => {
+    setActiveSlide((prev) => (prev + 1) % featuredSlides.length);
+  };
+
   return (
     <div className="services-page" style={{ backgroundColor: 'var(--bg-color)', minHeight: '100vh' }}>
       
@@ -67,6 +126,86 @@ export default function Services() {
             From routine luxury maintenance to concourse-level restoration, Garage 47 Calicut offers tailored packages to meet your vehicle's exact needs.
           </p>
         </motion.div>
+      </section>
+
+      {/* Signature Package Slider Showcase */}
+      <section className="featured-showcase-section" style={{ padding: '0 5% 80px' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <motion.div 
+            className="section-header centered"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            style={{ textAlign: 'center', marginBottom: '50px' }}
+          >
+            <span className="section-eyebrow" style={{ color: 'var(--accent-purple)' }}>Signature Packages</span>
+            <h2 className="section-title" style={{ fontSize: 'clamp(1.8rem, 4.5vw, 2.6rem)', fontWeight: 800 }}>Featured Detailing <span className="text-gradient">Showcase</span></h2>
+          </motion.div>
+
+          <div 
+            className="showcase-slider-deck"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            {/* Left Column: Image Area */}
+            <div className="slider-visual-column">
+              {featuredSlides.map((slide, idx) => (
+                <div 
+                  key={idx} 
+                  className={`slider-slide-img-box ${idx === activeSlide ? 'active' : ''}`}
+                >
+                  <img src={slide.image} alt={slide.title} />
+                  <div className="slider-image-overlay"></div>
+                </div>
+              ))}
+              
+              {/* Slider Navigation Arrows */}
+              <button className="slider-control-btn prev" onClick={handlePrevSlide}>
+                <ChevronLeft size={24} />
+              </button>
+              <button className="slider-control-btn next" onClick={handleNextSlide}>
+                <ChevronRight size={24} />
+              </button>
+
+              {/* Indicator Dots */}
+              <div className="slider-indicator-dots">
+                {featuredSlides.map((_, idx) => (
+                  <button 
+                    key={idx} 
+                    className={`indicator-dot ${idx === activeSlide ? 'active' : ''}`}
+                    onClick={() => setActiveSlide(idx)}
+                  ></button>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Column: Information Area */}
+            <div className="slider-content-column">
+              <div className="slider-content-card">
+                <span className="slide-eyebrow-category">{featuredSlides[activeSlide].category}</span>
+                <h3 className="slide-title-header">{featuredSlides[activeSlide].title}</h3>
+                <span className="slide-tagline">{featuredSlides[activeSlide].tagline}</span>
+                <p className="slide-desc-text">{featuredSlides[activeSlide].desc}</p>
+                
+                <ul className="slide-bullet-list">
+                  {featuredSlides[activeSlide].bullets.map((bullet, bIdx) => (
+                    <li key={bIdx}>
+                      <span className="slide-bullet-icon-box"><Check size={14} /></span>
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="slide-cta-wrapper">
+                  <Link to={`/service/${featuredSlides[activeSlide].id}`} className="btn btn-premium">
+                    Configure Package <ArrowRight size={18} />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Services Menu */}
