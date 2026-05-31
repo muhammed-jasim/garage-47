@@ -18,21 +18,21 @@ export default function Contact() {
     <div className="contact-page" style={{ paddingTop: '100px', backgroundColor: 'var(--bg-color)', minHeight: '100vh' }}>
       
       {/* Page Hero */}
-      <section className="page-hero" style={{ padding: '80px 5%', textAlign: 'center', background: 'radial-gradient(circle at 50% 100%, rgba(59, 130, 246, 0.1) 0%, transparent 60%)' }}>
+      <section className="page-hero" style={{ padding: 'clamp(50px, 10vw, 80px) 5%', textAlign: 'center', background: 'radial-gradient(circle at 50% 100%, rgba(59, 130, 246, 0.1) 0%, transparent 60%)' }}>
         <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
           <span className="section-eyebrow">Get In Touch</span>
-          <h1 style={{ fontSize: '4rem', fontWeight: 800, margin: '20px 0', letterSpacing: '-1px' }}>
+          <h1 style={{ fontSize: 'clamp(2.2rem, 7vw, 4rem)', fontWeight: 800, margin: '15px 0', letterSpacing: '-1px', lineHeight: 1.15 }}>
             Contact <span className="text-gradient">Garage 47</span>
           </h1>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '700px', margin: '0 auto' }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: 'clamp(0.95rem, 3.5vw, 1.15rem)', maxWidth: '700px', margin: '0 auto', lineHeight: '1.6' }}>
             Have a question about our services or ready to book your appointment? We're here to help you achieve the perfect finish for your vehicle.
           </p>
         </motion.div>
       </section>
 
       {/* Contact Info & Form Section */}
-      <section style={{ padding: '60px 5%' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', gap: '60px', flexWrap: 'wrap' }}>
+      <section style={{ padding: 'clamp(40px, 8vw, 60px) 5%' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', gap: 'clamp(30px, 5vw, 60px)', flexWrap: 'wrap' }}>
           
           {/* Contact Details */}
           <motion.div 
@@ -42,7 +42,7 @@ export default function Contact() {
             variants={staggerContainer}
             style={{ flex: '1 1 400px' }}
           >
-            <motion.h2 variants={fadeInUp} style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '30px' }}>
+            <motion.h2 variants={fadeInUp} style={{ fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontWeight: 700, marginBottom: '25px' }}>
               Reach Out to Us
             </motion.h2>
             
@@ -95,23 +95,23 @@ export default function Contact() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
-            style={{ flex: '1 1 500px', background: 'var(--bg-card)', padding: '40px', borderRadius: '24px', border: '1px solid var(--border-light)' }}
+            style={{ flex: '1 1 500px', background: 'var(--bg-card)', padding: 'clamp(20px, 5vw, 40px)', borderRadius: '24px', border: '1px solid var(--border-light)' }}
           >
-            <h3 style={{ fontSize: '1.8rem', fontWeight: 700, marginBottom: '25px' }}>Send us a Message</h3>
+            <h3 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.8rem)', fontWeight: 700, marginBottom: '20px' }}>Send us a Message</h3>
             <form onSubmit={(e) => e.preventDefault()} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
                 <div style={{ flex: '1 1 200px' }}>
                   <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Full Name</label>
-                  <input type="text" placeholder="John Doe" style={{ width: '100%', padding: '14px 20px', borderRadius: '12px', background: 'var(--bg-glass)', border: '1px solid var(--border-medium)', color: 'var(--text-primary)', fontSize: '1rem', outline: 'none' }} />
+                  <input type="text" placeholder="Your Name" style={{ width: '100%', padding: '14px 20px', borderRadius: '12px', background: 'var(--bg-glass)', border: '1px solid var(--border-medium)', color: 'var(--text-primary)', fontSize: '1rem', outline: 'none' }} />
                 </div>
                 <div style={{ flex: '1 1 200px' }}>
                   <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Phone Number</label>
-                  <input type="tel" placeholder="+91 XXXXX XXXXX" style={{ width: '100%', padding: '14px 20px', borderRadius: '12px', background: 'var(--bg-glass)', border: '1px solid var(--border-medium)', color: 'var(--text-primary)', fontSize: '1rem', outline: 'none' }} />
+                  <input type="tel" placeholder="Your Phone Number" style={{ width: '100%', padding: '14px 20px', borderRadius: '12px', background: 'var(--bg-glass)', border: '1px solid var(--border-medium)', color: 'var(--text-primary)', fontSize: '1rem', outline: 'none' }} />
                 </div>
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Email Address</label>
-                <input type="email" placeholder="john@example.com" style={{ width: '100%', padding: '14px 20px', borderRadius: '12px', background: 'var(--bg-glass)', border: '1px solid var(--border-medium)', color: 'var(--text-primary)', fontSize: '1rem', outline: 'none' }} />
+                <input type="email" placeholder="Your Email Address" style={{ width: '100%', padding: '14px 20px', borderRadius: '12px', background: 'var(--bg-glass)', border: '1px solid var(--border-medium)', color: 'var(--text-primary)', fontSize: '1rem', outline: 'none' }} />
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Service Needed</label>
@@ -137,7 +137,7 @@ export default function Contact() {
       </section>
 
       {/* Google Map Section */}
-      <section style={{ padding: '0 5% 120px' }}>
+      <section style={{ padding: '0 5% clamp(60px, 12vw, 120px)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <motion.div 
             initial="hidden"
@@ -148,7 +148,7 @@ export default function Contact() {
               borderRadius: '30px', 
               overflow: 'hidden',
               border: '1px solid var(--border-light)',
-              height: '450px',
+              height: 'clamp(300px, 50vw, 450px)',
               boxShadow: 'var(--card-shadow)'
             }}
           >

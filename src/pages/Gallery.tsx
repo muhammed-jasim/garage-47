@@ -1097,33 +1097,42 @@ export default function Gallery() {
             font-size: 0.85rem;
           }
           .bento-gallery-grid {
-            grid-template-columns: 1fr;
-            grid-auto-rows: 280px;
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: 160px;
+            gap: 12px;
+            padding: 0 4%;
           }
-          /* Ensure the first item (often large) fits well on mobile */
-          .bento-gallery-item:first-child {
-            grid-auto-rows: 350px;
-            height: 350px;
+          .bento-gallery-item.large {
+            grid-column: span 2;
+            grid-row: span 1;
+            height: 160px;
           }
-          .col-2, .row-2, .bento-gallery-item.large, .bento-gallery-item.medium {
+          .col-2, .row-2, .bento-gallery-item.medium, .bento-gallery-item.small {
             grid-column: span 1;
             grid-row: span 1;
+            height: 160px;
           }
           /* Default show content on mobile - No hover needed */
           .item-overlay {
-            opacity: 1;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 40%, transparent 80%);
+            opacity: 1 !important;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, transparent 100%) !important;
+            padding: 12px !important;
           }
-          .item-action {
-            transform: translateY(0);
+          .item-title {
+            font-size: 0.95rem !important;
+            font-weight: 700 !important;
+            margin-bottom: 4px !important;
+            line-height: 1.2 !important;
           }
           .item-category {
-            opacity: 1;
-            transform: none;
+            opacity: 1 !important;
+            transform: none !important;
+            font-size: 0.55rem !important;
+            letter-spacing: 1px !important;
+            margin-bottom: 2px !important;
           }
-          .view-text {
-            display: none; /* Hide extra text to keep it clean on mobile */
+          .item-action, .icon-circle, .item-corner-accent {
+            display: none !important;
           }
           .precision-hud-section {
             padding: 60px 5% 100px;
