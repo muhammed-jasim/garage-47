@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Droplets, Shield, Sun } from 'lucide-react';
+import { ArrowRight, Sparkles, Droplets, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const fadeInUp = {
@@ -17,37 +17,37 @@ const serviceCategories = [
     title: "Paint Correction & Protection",
     icon: <Sparkles size={32} className="text-gradient" />,
     services: [
-      { id: 2, title: "Level 1 Paint Correction", price: "From ₹4,999", desc: "Single stage machine polish to enhance gloss and remove light wash marring.", time: "1-2 Days" },
-      { id: 2, title: "Level 2 Paint Correction", price: "From ₹8,999", desc: "Two-stage compounding and polishing to remove 80-90% of defects, swirls, and scratches.", time: "2-3 Days" },
-      { id: 4, title: "Graphene Ceramic Coating", price: "From ₹14,999", desc: "Advanced 9H+ graphene coating for extreme hydrophobic properties and 5-year durability.", time: "3 Days" },
-      { id: 4, title: "Paint Protection Film (PPF)", price: "Custom Quote", desc: "Self-healing clear bra installation to protect against rock chips and deep scratches.", time: "4-5 Days" }
+      { id: 2, title: "Level 1 Paint Correction", image: "/images/services/level1_polish.png", desc: "Single stage machine polish to enhance gloss and remove light wash marring." },
+      { id: 2, title: "Level 2 Paint Correction", image: "/images/services/polishing.png", desc: "Two-stage compounding and polishing to remove 80-90% of defects, swirls, and scratches." },
+      { id: 4, title: "Graphene Ceramic Coating", image: "/images/services/coating.png", desc: "Advanced 9H+ graphene coating for extreme hydrophobic properties and 5-year durability." },
+      { id: 4, title: "Paint Protection Film (PPF)", image: "/images/services/ppf.png", desc: "Self-healing clear bra installation to protect against rock chips and deep scratches." }
     ]
   },
   {
     title: "Interior Restoration",
     icon: <Shield size={32} className="text-gradient" />,
     services: [
-      { id: 1, title: "Deep Interior Clean", price: "From ₹2,499", desc: "Comprehensive vacuuming, steam cleaning, and sanitization of all surfaces.", time: "4 Hours" },
-      { id: 1, title: "Leather Treatment & Coating", price: "From ₹3,999", desc: "Deep cleaning followed by premium leather ceramic coating to prevent dye transfer.", time: "6 Hours" },
-      { id: 1, title: "Odor Removal Treatment", price: "From ₹1,499", desc: "Ozone generator treatment to eliminate embedded smells from smoke or pets.", time: "2 Hours" }
+      { id: 1, title: "Deep Interior Clean", image: "/images/services/interior.png", desc: "Comprehensive vacuuming, steam cleaning, and sanitization of all surfaces." },
+      { id: 1, title: "Leather Treatment & Coating", image: "/images/services/leather_coating.png", desc: "Deep cleaning followed by premium leather ceramic coating to prevent dye transfer." },
+      { id: 1, title: "Odor Removal Treatment", image: "/images/services/interior.png", desc: "Ozone generator treatment to eliminate embedded smells from smoke or pets." }
     ]
   },
   {
     title: "Maintenance & Wash",
     icon: <Droplets size={32} className="text-gradient" />,
     services: [
-      { id: 3, title: "Premium Maintenance Wash", price: "From ₹999", desc: "pH-neutral foam bath, safe two-bucket hand wash, and forced air drying.", time: "1.5 Hours" },
-      { id: 3, title: "Engine Bay Detailing", price: "From ₹1,299", desc: "Safe degreasing and dressing of all engine compartment plastics and hoses.", time: "2 Hours" },
-      { id: 3, title: "Headlight Restoration", price: "From ₹1,499", desc: "Wet sanding, compounding, and UV coating of oxidized headlights.", time: "1 Hour" }
+      { id: 3, title: "Premium Maintenance Wash", image: "/images/services/wash.png", desc: "pH-neutral foam bath, safe two-bucket hand wash, and forced air drying." },
+      { id: 3, title: "Engine Bay Detailing", image: "/images/services/engine_bay.png", desc: "Safe degreasing and dressing of all engine compartment plastics and hoses." },
+      { id: 3, title: "Headlight Restoration", image: "/images/services/headlight.png", desc: "Wet sanding, compounding, and UV coating of oxidized headlights." }
     ]
   },
   {
     title: "Specialty Add-ons",
     icon: <Sparkles size={32} className="text-gradient" />,
     services: [
-      { id: 4, title: "Wheel & Caliper Coating", price: "From ₹4,499", desc: "High-temperature ceramic coating to repel brake dust and road grime.", time: "4 Hours" },
-      { id: 4, title: "Glass Polishing & Coating", price: "From ₹1,999", desc: "Water spot removal and hydrophobic coating for extreme visibility in rain.", time: "2 Hours" },
-      { id: 4, title: "Plastic Trim Restoration", price: "From ₹999", desc: "Restoring faded exterior plastics to a rich factory black with ceramic dye.", time: "1 Hour" }
+      { id: 4, title: "Wheel & Caliper Coating", image: "/images/services/wheels.png", desc: "High-temperature ceramic coating to repel brake dust and road grime." },
+      { id: 4, title: "Glass Polishing & Coating", image: "/images/services/glass_coating.png", desc: "Water spot removal and hydrophobic coating for extreme visibility in rain." },
+      { id: 4, title: "Plastic Trim Restoration", image: "/images/services/trim_restoration.png", desc: "Restoring faded exterior plastics to a rich factory black with ceramic dye." }
     ]
   }
 ];
@@ -93,33 +93,23 @@ export default function Services() {
                     key={sIdx} 
                     variants={fadeInUp} 
                     className="detailed-service-card"
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = 'var(--accent-blue)';
-                      e.currentTarget.style.transform = 'translateY(-5px)';
-                      e.currentTarget.style.boxShadow = 'var(--card-shadow)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = 'var(--border-light)';
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = 'none';
-                    }}
                   >
-                    <div className="service-card-header">
-                      <h3 className="service-card-title">{service.title}</h3>
-                      <span className="service-price-tag">
-                        {service.price}
-                      </span>
+                    <div className="service-card-image-wrapper">
+                      <img src={service.image} alt={service.title} className="service-card-image" />
+                      <div className="service-card-image-overlay"></div>
                     </div>
-                    <p className="service-desc">
-                      {service.desc}
-                    </p>
-                    <div className="service-footer">
-                      <span className="service-meta">
-                        <Sun size={16} /> Est. Time: {service.time}
-                      </span>
-                      <Link to={`/service/${service.id}`} className="service-link">
-                        View Details <ArrowRight size={16} color="var(--accent-blue)" />
-                      </Link>
+                    <div className="service-card-body">
+                      <div className="service-card-header">
+                        <h3 className="service-card-title">{service.title}</h3>
+                      </div>
+                      <p className="service-desc">
+                        {service.desc}
+                      </p>
+                      <div className="service-footer">
+                        <Link to={`/service/${service.id}`} className="service-link">
+                          View Details <ArrowRight size={16} color="var(--accent-blue)" />
+                        </Link>
+                      </div>
                     </div>
                   </motion.div>
                 ))}

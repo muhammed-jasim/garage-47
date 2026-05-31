@@ -148,43 +148,73 @@ export default function About() {
         </div>
       </section>
 
-      {/* Core Values - Reimagined */}
+      {/* Core Values - Redesigned into a Beautiful Bento Grid */}
       <section className="values-section">
         <div className="container">
-          <div className="values-grid">
-            <div className="values-header">
-              <span className="section-eyebrow">The Ethos</span>
-              <h2 className="section-title small">The <span className="text-gradient">Garage 47</span> Standard</h2>
-              <p>
-                A commitment to excellence isn't just a slogan; it's a measurable standard that defines our culture.
-              </p>
-              <div className="values-cta">
-                <Link to="/contact" className="btn btn-premium">Consult an Expert</Link>
-              </div>
-            </div>
+          <motion.div 
+            className="section-header centered"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            style={{ textAlign: 'center', marginBottom: '60px', maxWidth: '800px', margin: '0 auto 60px' }}
+          >
+            <span className="section-eyebrow">The Ethos</span>
+            <h2 className="section-title">The <span className="text-gradient">Garage 47</span> Standard</h2>
+            <p className="section-desc" style={{ color: 'var(--text-secondary)', fontSize: 'clamp(0.95rem, 3vw, 1.15rem)', marginTop: '15px', lineHeight: '1.6' }}>
+              A commitment to excellence isn't just a slogan; it's a measurable standard that defines our culture and drives our hands-on precision.
+            </p>
+          </motion.div>
 
-            <motion.div 
-              className="values-cards"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={staggerContainer}
-            >
-              {[
-                { icon: <Target size={24} />, title: 'Absolute Precision', desc: 'No swirl mark is too small to go unnoticed under our specialized lighting array.' },
-                { icon: <ShieldCheck size={24} />, title: 'Molecular Protection', desc: 'We exclusively use 9H+ graphene and ceramic coatings from the world\'s top labs.' },
-                { icon: <Award size={24} />, title: 'Certified Mastery', desc: 'Our technicians are factory-trained for the world\'s most delicate paints.' },
-                { icon: <Users size={24} />, title: 'Radical Transparency', desc: 'We provide full diagnostic reports before and after every major service.' }
-              ].map((val, idx) => (
-                <motion.div key={idx} variants={fadeInUp} className="value-card-modern">
-                  <div className="value-icon-circle">{val.icon}</div>
-                  <div className="value-info">
-                    <h4>{val.title}</h4>
-                    <p>{val.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+          <motion.div 
+            className="values-grid-bento"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            {[
+              { 
+                icon: <Target size={28} />, 
+                title: 'Absolute Precision', 
+                desc: 'No swirl mark is too small to go unnoticed under our specialized multi-spectrum lighting array.',
+                badge: 'Zero Swirls'
+              },
+              { 
+                icon: <ShieldCheck size={28} />, 
+                title: 'Molecular Protection', 
+                desc: 'We exclusively use 9H+ graphene and ceramic coatings from the world\'s top chemical laboratories.',
+                badge: '9H+ Certified'
+              },
+              { 
+                icon: <Award size={28} />, 
+                title: 'Certified Mastery', 
+                desc: 'Our detailers are globally factory-trained to handle the most delicate supercar and luxury paintwork.',
+                badge: 'Expert Team'
+              },
+              { 
+                icon: <Users size={28} />, 
+                title: 'Radical Transparency', 
+                desc: 'We provide full electronic diagnostic reports and paint-depth graphs before and after every major service.',
+                badge: 'Full Reports'
+              }
+            ].map((val, idx) => (
+              <motion.div key={idx} variants={fadeInUp} className="value-card-bento">
+                <div className="value-bento-glow"></div>
+                <div className="value-bento-header">
+                  <div className="value-icon-box">{val.icon}</div>
+                  <span className="value-badge">{val.badge}</span>
+                </div>
+                <div className="value-bento-content">
+                  <h3>{val.title}</h3>
+                  <p>{val.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <div style={{ textAlign: 'center', marginTop: '50px' }}>
+            <Link to="/contact" className="btn btn-premium">Consult an Expert</Link>
           </div>
         </div>
       </section>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Menu, X, MapPin, Phone, Mail, Sun, Moon } from 'lucide-react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
@@ -28,12 +28,14 @@ function AppContent() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isPageLoading, setIsPageLoading] = useState(false);
   const location = useLocation();
-  const isContactPage = location.pathname === '/contact';
   const isHomePage = location.pathname === '/';
-  const isGalleryPage = location.pathname === '/gallery';
-  const isServicesPage = location.pathname === '/services';
-  const isServiceDetailPage = location.pathname.startsWith('/service');
-  const hideNewsletter = isContactPage || isHomePage || isGalleryPage || isServicesPage || isServiceDetailPage;
+  const lenisRef = useRef<Lenis | null>(null);
+
+  useEffect(() => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     if (isLightMode) {
@@ -64,6 +66,7 @@ function AppContent() {
       lerp: 0.1,
     });
 
+    lenisRef.current = lenis;
     lenis.on('scroll', ScrollTrigger.update);
 
     const updateLenis = (time: number) => {
@@ -75,6 +78,7 @@ function AppContent() {
 
     return () => {
       gsap.ticker.remove(updateLenis);
+      lenisRef.current = null;
       lenis.destroy();
     };
   }, []);
@@ -156,24 +160,6 @@ function AppContent() {
 
       {/* Footer Area */}
       <footer className="footer" id="contact">
-        {!hideNewsletter && (
-          <div className="footer-top">
-            <div className="newsletter-banner">
-              <div className="newsletter-content">
-                <span className="section-eyebrow" style={{ color: 'var(--accent-purple)' }}>VIP Access</span>
-                <h2>Join the <span className="text-gradient">Elite List</span></h2>
-                <p>Subscribe to receive exclusive offers, early access to new ceramic coating technologies, and premium car care tips from our master detailers.</p>
-              </div>
-              <div className="newsletter-form-container">
-                <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
-                  <input type="email" placeholder="Enter your email address..." />
-                  <button type="submit" className="btn">Subscribe <Mail size={18} /></button>
-                </form>
-                <p className="newsletter-note">* We respect your inbox. No spam, ever.</p>
-              </div>
-            </div>
-          </div>
-        )}
         <div className="footer-grid">
           <div className="footer-col brand-col">
             <Link to="/" className="logo">
