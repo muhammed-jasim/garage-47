@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, X, Shield, Zap, Sparkles, Activity } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -103,9 +103,25 @@ const staggerContainer = {
   }
 } as const;
 
+const heroSlides = [
+  '/images/gallery/lambo.png',
+  '/images/gallery/porsche.png',
+  '/images/gallery/ferrari.png',
+  '/images/gallery/mercedes.png',
+  '/images/gallery/aston.png'
+];
+
 export default function Gallery() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
 
   const filteredItems = activeCategory === 'All' 
     ? galleryItems 
@@ -128,11 +144,26 @@ export default function Gallery() {
       {/* Futuristic Hero Section */}
       <section className="page-hero futuristic-hero">
         <div className="hero-grid-overlay"></div>
-        <img 
-          src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80" 
-          alt="Gallery Hero" 
-          className="page-hero-bg" 
-        />
+        {heroSlides.map((slide, idx) => (
+          <img 
+            key={idx}
+            src={slide} 
+            alt={`Gallery Hero ${idx}`} 
+            className="page-hero-bg" 
+            style={{
+              opacity: idx === currentSlide ? 0.35 : 0,
+              transition: 'opacity 1.2s ease-in-out',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              zIndex: 0,
+              willChange: 'opacity'
+            }}
+          />
+        ))}
         <div className="page-hero-overlay" style={{ background: 'linear-gradient(to bottom, transparent, var(--bg-color))' }}></div>
         
         <div className="page-hero-content">
